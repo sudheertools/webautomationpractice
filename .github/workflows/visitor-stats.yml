@@ -21,7 +21,7 @@ jobs:
 
       - name: Fetch GitHub traffic and write data file
         env:
-          GH_TOKEN: ${{ secrets.STATS_TOKEN }}
+          STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
         run: node scripts/fetch-traffic.js
 
       - name: Commit and push if changed
