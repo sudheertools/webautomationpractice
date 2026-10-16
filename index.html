@@ -70,8 +70,22 @@
   }
   .visitor h3 { font-size: var(--fs-md); font-weight: 700; margin: 0 0 4px; }
   .visitor .sub { color: var(--text-muted); font-size: var(--fs-sm); margin: 0 0 18px; }
-  .visitor .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .visitor .badges img { height: 22px; }
+  .visitor .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px; max-width: 560px; margin: 0 auto;
+  }
+  .visitor .stat {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-sm); padding: 14px 10px;
+  }
+  .visitor .stat .v {
+    font-family: var(--mono); font-size: 1.5rem; font-weight: 700;
+    color: var(--brand); line-height: 1.1;
+  }
+  .visitor .stat .l { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 4px; }
+  .visitor .meta {
+    font-size: var(--fs-xs); color: var(--text-faint); margin-top: 14px;
+  }
   .foot { text-align: center; color: var(--text-faint); font-size: var(--fs-xs); margin-top: 40px; padding-bottom: 20px; }
 </style>
 </head>
@@ -175,11 +189,13 @@
         <section class="visitor" aria-label="Site visitors">
           <h3>&#128065; Visitor stats</h3>
           <p class="sub">Live traffic from GitHub &mdash; updated as people visit.</p>
-          <div class="badges">
-            <img src="https://img.shields.io/github/traffic/views/sudheertools/webautomationpractice?style=for-the-badge&amp;label=views&amp;color=6366f1" alt="GitHub views">
-            <img src="https://img.shields.io/github/traffic/views/sudheertools/webautomationpractice?style=for-the-badge&amp;label=unique%20visitors&amp;color=8b5cf6&amp;query=.unique" alt="GitHub unique visitors">
-            <img src="https://img.shields.io/github/traffic/clones/sudheertools/webautomationpractice?style=for-the-badge&amp;color=22d3ee" alt="GitHub clones">
+          <div class="stats" id="visitor-stats">
+            <div class="stat"><div class="v" data-stat="views">—</div><div class="l">Views (14d)</div></div>
+            <div class="stat"><div class="v" data-stat="unique-views">—</div><div class="l">Unique visitors</div></div>
+            <div class="stat"><div class="v" data-stat="clones">—</div><div class="l">Clones (14d)</div></div>
+            <div class="stat"><div class="v" data-stat="stars">—</div><div class="l">Stars</div></div>
           </div>
+          <p class="meta" id="visitor-meta">Loading traffic…</p>
         </section>
 
         <p class="foot">LocatorLab — free practice site for Selenium, Playwright, Cypress &amp; WebDriverIO learners.</p>
@@ -191,5 +207,6 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/locator-coach.js"></script>
+<script src="assets/js/home-stats.js"></script>
 </body>
 </html>
