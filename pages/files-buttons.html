@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Files &amp; Buttons — LocatorLab</title>
+<meta name="description" content="Practice single and multiple file uploads, drag-and-drop zones, real file downloads and every button variant used in modern web apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">This page</div>
+        <a href="#single-upload"><span class="nav-ico">&#8226;</span>Single upload</a>
+        <a href="#multi-upload"><span class="nav-ico">&#8226;</span>Multiple upload</a>
+        <a href="#drag-drop"><span class="nav-ico">&#8226;</span>Drag &amp; drop</a>
+        <a href="#downloads"><span class="nav-ico">&#8226;</span>Downloads</a>
+        <a href="#buttons"><span class="nav-ico">&#8226;</span>Buttons</a>
+        <a href="#button-states"><span class="nav-ico">&#8226;</span>Button states</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Files &amp; Buttons<small>Uploads, downloads and click targets</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Page 3 of 5</span>
+        <h1>Files &amp; Buttons</h1>
+        <p>File uploads in all three flavours (single, multiple, drag-and-drop), real generated
+        downloads you can assert on, and a gallery of every button pattern — including the ones
+        that lie to your test (loading spinners, disabled states, icon-only targets).</p>
+      </div>
+
+      <!-- ============ 01 SINGLE UPLOAD ============ -->
+      <h2 class="section-title" id="single-upload"><span class="section-num">01</span>Single file upload</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Native file input</h3>
+            <p>The <code class="inline-code">&lt;input type="file"&gt;</code> is hidden behind a styled
+            label. Automation sets files directly on the input — never on the button.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <label for="resume-input" style="display:block;margin-bottom:7px">Resume (PDF only, max 2 MB)</label>
+            <div class="drop-zone" id="resume-zone" data-testid="resume-zone" data-automation-id="resume-zone">
+              <div class="big">&#128196;</div>
+              <p>Drop your resume here, or</p>
+              <label class="btn btn-primary btn-sm" for="resume-input" style="margin-top:12px">Browse files</label>
+              <input type="file" id="resume-input" name="resume" accept="application/pdf,.pdf"
+                     data-testid="resume-input" data-automation-id="resume-input"
+                     class="hidden-vis">
+            </div>
+            <div id="resume-file" class="file-row" hidden>
+              <span aria-hidden="true">&#128196;</span>
+              <span class="nm" id="resume-filename">—</span>
+              <span class="sz" id="resume-filesize">—</span>
+              <button type="button" class="icon-btn" id="resume-remove" aria-label="Remove file">&times;</button>
+            </div>
+            <p class="hint" style="margin-top:10px">Target the input itself: <code class="inline-code">#resume-input</code>. Use Playwright's <code class="inline-code">setInputFiles()</code> or Selenium's <code class="inline-code">send_keys(absolute_path)</code>.</p>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom:12px">How to automate uploads</h4>
+<pre class="code"><span class="c">// Playwright</span>
+await page.getByTestId("resume-input")
+  .setInputFiles("fixtures/resume.pdf");
+await expect(page.locator("#resume-filename"))
+  .toHaveText("resume.pdf");
+
+<span class="c"># Selenium (Python) — path must be absolute</span>
+driver.find_element(By.ID, "resume-input").send_keys(
+    os.path.abspath("fixtures/resume.pdf"))
+assert driver.find_element(
+    By.ID, "resume-filename").text == "resume.pdf"</pre>
+            <div class="alert alert-warning" style="margin-top:14px">
+              <span aria-hidden="true">&#9888;</span>
+              <div><strong>Use absolute paths in Selenium</strong>
+              <p>Relative paths silently fail on most drivers. In Playwright, project-relative paths are fine.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Upload a PDF to <code>#resume-input</code> and assert <code>#resume-filename</code> shows its name.</li>
+            <li>Assert <code>#resume-file</code> is visible and <code>#resume-zone</code> shows a "ready" look.</li>
+            <li>Click <code>#resume-remove</code> and assert the file row is hidden again.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ============ 02 MULTI UPLOAD ============ -->
+      <h2 class="section-title" id="multi-upload"><span class="section-num">02</span>Multiple file upload</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Multi-file input with a list</h3>
+            <p>Accepts several files at once and renders one row per file. Great for testing
+            "upload N items and assert N rows".</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <label for="gallery-input" style="display:block;margin-bottom:7px">Project screenshots (max 5 files)</label>
+        <div class="row">
+          <label class="btn btn-primary" for="gallery-input">Choose files</label>
+          <input type="file" id="gallery-input" name="gallery" multiple accept="image/*"
+                 data-testid="gallery-input" data-automation-id="gallery-input" class="hidden-vis">
+          <button type="button" class="btn" id="gallery-clear" data-testid="gallery-clear" data-automation-id="gallery-clear">Clear all</button>
+          <span class="hint" id="gallery-count" role="status">0 files selected</span>
+        </div>
+        <div id="gallery-list" style="margin-top:14px" data-testid="gallery-list" data-automation-id="gallery-list">
+          <p class="empty-state" id="gallery-empty"><span class="big">&#128444;</span><br>No files selected yet.</p>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Upload 3 images to <code>#gallery-input</code>.</li>
+            <li>Assert <code>#gallery-list</code> contains exactly 3 <code>.file-row</code> elements.</li>
+            <li>Assert <code>#gallery-count</code> reads <code>3 files selected</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await page.getByTestId("gallery-input").setInputFiles([
+  "fixtures/a.png", "fixtures/b.png", "fixtures/c.png"
+]);
+await expect(page.locator("#gallery-list .file-row")).toHaveCount(3);
+await expect(page.locator("#gallery-count")).toHaveText("3 files selected");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 03 DRAG & DROP ============ -->
+      <h2 class="section-title" id="drag-drop"><span class="section-num">03</span>Drag &amp; drop upload</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Drop zone</h3>
+            <p>A zone listening to the HTML5 drag events. Programmatic drag-and-drop is awkward in
+            most frameworks, so the zone <b>also</b> opens the file picker on click — a deliberate
+            escape hatch for automation.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="drop-zone" id="dnd-zone" data-testid="dnd-zone" data-automation-id="dnd-zone"
+             tabindex="0" role="button" aria-label="Upload area — click or drop files">
+          <div class="big">&#11014;</div>
+          <p><b>Drag files here</b> or click to browse</p>
+          <small>Accepts any file type &middot; max 10 MB each</small>
+          <input type="file" id="dnd-input" name="dndFiles" multiple data-testid="dnd-input"
+                 data-automation-id="dnd-input" class="hidden-vis">
+        </div>
+        <div id="dnd-status" class="hint" style="margin-top:12px" role="status" aria-live="polite">
+          Waiting for a file…
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Upload a file via <code>#dnd-input</code> (the reliable route) and assert <code>#dnd-status</code> changes.</li>
+            <li>Click the zone <code>#dnd-zone</code> itself and assert it is focusable (<code class="inline-code">tabindex="0"</code>).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ============ 04 DOWNLOADS ============ -->
+      <h2 class="section-title" id="downloads"><span class="section-num">04</span>Downloads</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Generated files you can assert on</h3>
+            <p>These buttons create real blobs client-side. Nothing hits a server, so they work
+            offline — but they still trigger the browser's download machinery.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card" style="margin:0;padding:20px">
+            <h4>Text report</h4>
+            <p class="small muted" style="margin:8px 0 14px"><code class="inline-code">report.txt</code> &middot; plain text, deterministic content.</p>
+            <button type="button" class="btn btn-primary btn-block" id="dl-text" data-testid="dl-text"
+                    data-automation-id="dl-text">Download report.txt</button>
+            <p class="hint" style="margin-top:10px">Contains the line <code class="inline-code">RESULT: PASS</code> — assert the downloaded content.</p>
+          </div>
+          <div class="card" style="margin:0;padding:20px">
+            <h4>JSON export</h4>
+            <p class="small muted" style="margin:8px 0 14px"><code class="inline-code">data.json</code> &middot; structured, good for API-style assertions.</p>
+            <button type="button" class="btn btn-primary btn-block" id="dl-json" data-testid="dl-json"
+                    data-automation-id="dl-json">Download data.json</button>
+            <p class="hint" style="margin-top:10px">Has <code class="inline-code">users.length === 5</code>.</p>
+          </div>
+          <div class="card" style="margin:0;padding:20px">
+            <h4>CSV rows</h4>
+            <p class="small muted" style="margin:8px 0 14px"><code class="inline-code">users.csv</code> &middot; 1 header + 5 data rows.</p>
+            <button type="button" class="btn btn-primary btn-block" id="dl-csv" data-testid="dl-csv"
+                    data-automation-id="dl-csv">Download users.csv</button>
+            <p class="hint" style="margin-top:10px">Assert the file has 6 lines total.</p>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:18px">
+          <span class="hint" id="dl-status" role="status">No download triggered yet.</span>
+        </div>
+
+        <div class="alert alert-info" style="margin-top:16px">
+          <span aria-hidden="true">&#8505;</span>
+          <div><strong>How to assert downloads</strong>
+          <p>Playwright: <code class="inline-code">const dl = await page.waitForEvent("download"); ... await dl.path()</code>.
+          Selenium 4: enable CDP <code class="inline-code">Browser.setDownloadBehavior</code> or use <code class="inline-code">driver.get(downloadUrl)</code> and check the buffer.</p></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#dl-text</code>, wait for the <code>download</code> event, and assert the suggested filename is <code>report.txt</code>.</li>
+            <li>Read the downloaded file and assert it contains <code>RESULT: PASS</code>.</li>
+            <li>Trigger <code>#dl-json</code> and parse it; assert <code>users.length === 5</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">const dlPromise = page.waitForEvent("download");
+await page.getByTestId("dl-text").click();
+const dl = await dlPromise;
+
+expect(dl.suggestedFilename()).toBe("report.txt");
+const path = await dl.path();
+const body = require("fs").readFileSync(path, "utf8");
+expect(body).toContain("RESULT: PASS");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 05 BUTTONS ============ -->
+      <h2 class="section-title" id="buttons"><span class="section-num">05</span>Button variants</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Every kind of click target</h3>
+            <p>Buttons, reset, links that look like buttons, icon-only buttons with only an
+            <code class="inline-code">aria-label</code>, and a split button.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="row" style="gap:12px;margin-bottom:22px">
+          <button type="button" class="btn btn-primary" id="btn-primary" data-testid="btn-primary" data-automation-id="btn-primary">Primary action</button>
+          <button type="button" class="btn" id="btn-secondary" data-testid="btn-secondary" data-automation-id="btn-secondary">Secondary</button>
+          <button type="button" class="btn btn-danger" id="btn-danger" data-testid="btn-danger" data-automation-id="btn-danger">Delete</button>
+          <button type="button" class="btn btn-ghost" id="btn-ghost" data-testid="btn-ghost" data-automation-id="btn-ghost">Ghost</button>
+          <button type="button" class="btn btn-lg" id="btn-large" data-testid="btn-large" data-automation-id="btn-large">Large</button>
+          <button type="button" class="btn btn-sm" id="btn-small" data-testid="btn-small" data-automation-id="btn-small">Small</button>
+        </div>
+
+        <div class="row" style="gap:12px;margin-bottom:22px">
+          <button type="button" class="btn btn-icon" id="btn-icon" data-testid="btn-icon" data-automation-id="btn-icon" aria-label="Refresh list">&#8635;</button>
+          <button type="button" class="btn btn-icon" id="btn-icon-settings" data-testid="btn-icon-settings" data-automation-id="btn-icon-settings" aria-label="Open settings">&#9881;</button>
+          <button type="button" class="btn btn-icon" id="btn-icon-close" data-testid="btn-icon-close" data-automation-id="btn-icon-close" aria-label="Close panel">&times;</button>
+          <span class="hint">Icon-only buttons have <b>no visible text</b> — use <code class="inline-code">getByLabel()</code> or <code class="inline-code">By.cssSelector('[aria-label="…"]')</code>.</span>
+        </div>
+
+        <div class="row" style="gap:0;margin-bottom:22px">
+          <button type="button" class="btn btn-primary" id="split-main" data-testid="split-main" data-automation-id="split-main" style="border-radius:8px 0 0 8px;border-right:1px solid #ffffff33">Save</button>
+          <button type="button" class="btn btn-primary" id="split-toggle" data-testid="split-toggle" data-automation-id="split-toggle" style="border-radius:0 8px 8px 0;border-left:1px solid #ffffff33" aria-haspopup="menu" aria-expanded="false" aria-label="More save options">&#9662;</button>
+          <span class="hint" style="margin-left:12px">Split button — two adjacent targets sharing one visual button.</span>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <a class="btn btn-primary" href="#buttons" id="link-button" data-testid="link-button" data-automation-id="link-button">I am an &lt;a&gt; tag</a>
+          <button type="button" class="btn" id="fake-link-btn" data-testid="fake-link-btn" data-automation-id="fake-link-btn">I am a &lt;button&gt;</button>
+          <span class="hint" style="margin-left:12px">Same look, different tag. Affects which locator you should use.</span>
+        </div>
+
+        <div class="row" style="gap:10px">
+          <button type="button" class="btn" id="btn-count" data-testid="btn-count" data-automation-id="btn-count">Clicked <span id="click-count">0</span> times</button>
+          <button type="button" class="btn" id="btn-dbl" data-testid="btn-dbl" data-automation-id="btn-dbl">Double-click me</button>
+          <button type="button" class="btn" id="btn-ctx" data-testid="btn-ctx" data-automation-id="btn-ctx">Right-click me</button>
+          <span class="hint" id="click-out" role="status"></span>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#btn-count</code> 3 times and assert <code>#click-count</code> reads <code>3</code>.</li>
+            <li>Locate <code>#btn-icon-settings</code> by its accessible name <code>Open settings</code> only (no ID).</li>
+            <li>Double-click <code>#btn-dbl</code> and assert <code>#click-out</code> mentions "double".</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">const btn = page.getByTestId("btn-count");
+await btn.click(); await btn.click(); await btn.click();
+await expect(page.locator("#click-count")).toHaveText("3");
+
+await page.getByLabel("Open settings").click();
+
+await page.getByTestId("btn-dbl").dblclick();
+await expect(page.locator("#click-out")).toContainText("double");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 06 BUTTON STATES ============ -->
+      <h2 class="section-title" id="button-states"><span class="section-num">06</span>Button states</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Disabled, loading and toggle states</h3>
+            <p>The states that break naive tests: a button that disables itself, one that shows a
+            spinner for 2 seconds, and toggles that expose <code class="inline-code">aria-pressed</code>.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-2">
+          <fieldset>
+            <legend>Async states</legend>
+            <div class="row" style="margin-top:12px;gap:10px">
+              <button type="button" class="btn btn-primary" id="btn-slow" data-testid="btn-slow" data-automation-id="btn-slow">Submit (2s loading)</button>
+              <button type="button" class="btn" id="btn-disabled" data-testid="btn-disabled" data-automation-id="btn-disabled" disabled>Disabled forever</button>
+              <button type="button" class="btn" id="btn-disable-after" data-testid="btn-disable-after" data-automation-id="btn-disable-after">Disables itself</button>
+            </div>
+            <p class="hint" style="margin-top:12px" role="status" id="slow-status">Idle.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Toggles (aria-pressed)</legend>
+            <div class="row" style="margin-top:12px;gap:10px">
+              <button type="button" class="btn" id="tg-dark" data-testid="tg-dark" data-automation-id="tg-dark" aria-pressed="false">Dark mode</button>
+              <button type="button" class="btn" id="tg-bell" data-testid="tg-bell" data-automation-id="tg-bell" aria-pressed="true">Notifications</button>
+              <button type="button" class="btn" id="tg-beta" data-testid="tg-beta" data-automation-id="tg-beta" aria-pressed="false" disabled>Experimental</button>
+            </div>
+            <p class="hint" style="margin-top:12px">Read the state with <code class="inline-code">aria-pressed</code>, not with visible text.</p>
+          </fieldset>
+        </div>
+
+        <div style="margin-top:20px">
+          <span class="field-label" style="display:block;margin-bottom:9px">Toggle button group (single select)</span>
+          <div class="row" id="view-toggle" role="group" aria-label="View mode" style="gap:8px">
+            <button type="button" class="btn" data-view="grid" data-testid="view-grid" data-automation-id="view-grid" aria-pressed="true">Grid</button>
+            <button type="button" class="btn" data-view="list" data-testid="view-list" data-automation-id="view-list" aria-pressed="false">List</button>
+            <button type="button" class="btn" data-view="table" data-testid="view-table" data-automation-id="view-table" aria-pressed="false">Table</button>
+          </div>
+          <p class="hint" style="margin-top:10px" role="status" id="view-out">Current view: grid</p>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#btn-slow</code> and assert it gains the <code class="inline-code">btn-loading</code> class immediately.</li>
+            <li>Wait until it is no longer loading, then assert <code>#slow-status</code> says "Saved".</li>
+            <li>Click <code>#tg-bell</code> and assert <code>aria-pressed</code> flips from <code>true</code> to <code>false</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">const slow = page.getByTestId("btn-slow");
+await slow.click();
+await expect(slow).toHaveClass(/btn-loading/);
+await expect(slow).not.toHaveClass(/btn-loading/, { timeout: 5000 });
+await expect(page.locator("#slow-status")).toHaveText("Saved.");
+
+const bell = page.getByTestId("tg-bell");
+await expect(bell).toHaveAttribute("aria-pressed", "true");
+await bell.click();
+await expect(bell).toHaveAttribute("aria-pressed", "false");</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:30px">
+        <span aria-hidden="true">&#10003;</span>
+        <div>
+          <strong>Files &amp; Buttons complete</strong>
+          <p>Next: <a href="wizard-submit.html">Wizard &amp; Submit</a> — the full registration flow with live validation, OTP and a multi-step wizard.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-coach.js"></script>
+<script src="../assets/js/sections/files-buttons.js"></script>
+</body>
+</html>

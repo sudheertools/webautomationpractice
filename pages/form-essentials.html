@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Essentials — LocatorLab</title>
+<meta name="description" content="Practice every type of HTML form control: text inputs, validation states, checkboxes, radio buttons, selects, custom dropdowns, comboboxes and tag inputs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">This page</div>
+        <a href="#text-inputs"><span class="nav-ico">&#8226;</span>Text inputs</a>
+        <a href="#field-states"><span class="nav-ico">&#8226;</span>Field states</a>
+        <a href="#checkboxes"><span class="nav-ico">&#8226;</span>Checkboxes</a>
+        <a href="#radios"><span class="nav-ico">&#8226;</span>Radio buttons</a>
+        <a href="#selects"><span class="nav-ico">&#8226;</span>Native selects</a>
+        <a href="#custom-dropdown"><span class="nav-ico">&#8226;</span>Custom dropdown</a>
+        <a href="#combobox"><span class="nav-ico">&#8226;</span>Searchable combobox</a>
+        <a href="#cascading"><span class="nav-ico">&#8226;</span>Cascading dropdowns</a>
+        <a href="#tag-input"><span class="nav-ico">&#8226;</span>Tag input</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Form Essentials<small>Every text, choice and selection control</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Page 1 of 5</span>
+        <h1>Form Essentials</h1>
+        <p>Forty-four interactive controls covering every HTML form input type, every field state,
+        and every selection pattern you will meet in production apps. Turn on <b>Locator Coach</b>
+        in the top bar, hover any control, and copy its Selenium or Playwright locator.</p>
+      </div>
+
+      <!-- ============ 01 TEXT INPUTS ============ -->
+      <h2 class="section-title" id="text-inputs"><span class="section-num">01</span>Text inputs</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Basic text fields</h3>
+            <p>Every native text-like input type. Each has a stable <code class="inline-code">id</code>,
+            <code class="inline-code">name</code>, <code class="inline-code">data-testid</code> and a real <code class="inline-code">&lt;label&gt;</code>.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="first-name">First name <span class="req">*</span></label>
+            <input type="text" id="first-name" name="firstName" data-testid="first-name"
+                   data-automation-id="first-name" placeholder="Ada" autocomplete="given-name" required>
+            <span class="hint">Type: <code class="inline-code">text</code> &middot; Practice: type "Ada" and assert the value.</span>
+          </div>
+
+          <div class="field">
+            <label for="last-name">Last name <span class="req">*</span></label>
+            <input type="text" id="last-name" name="lastName" data-testid="last-name"
+                   data-automation-id="last-name" placeholder="Lovelace" autocomplete="family-name" required>
+            <span class="hint">Use <code class="inline-code">By.ID, "last-name"</code> or <code class="inline-code">getByTestId("last-name")</code>.</span>
+          </div>
+
+          <div class="field">
+            <label for="user-email">Email address <span class="req">*</span></label>
+            <input type="email" id="user-email" name="email" data-testid="user-email"
+                   data-automation-id="user-email" placeholder="ada@example.com" autocomplete="email" required>
+            <span class="hint">Type: <code class="inline-code">email</code> — browsers enforce a basic format.</span>
+          </div>
+
+          <div class="field">
+            <label for="user-phone">Phone number</label>
+            <input type="tel" id="user-phone" name="phone" data-testid="user-phone"
+                   data-automation-id="user-phone" placeholder="+91 98765 43210" autocomplete="tel" pattern="^[\d+\-\s()]{7,20}$">
+            <span class="hint">Type: <code class="inline-code">tel</code> — numeric keyboard on mobile.</span>
+          </div>
+
+          <div class="field">
+            <label for="website-url">Website URL</label>
+            <input type="url" id="website-url" name="website" data-testid="website-url"
+                   data-automation-id="website-url" placeholder="https://example.com">
+            <span class="hint">Type: <code class="inline-code">url</code> — must include a scheme.</span>
+          </div>
+
+          <div class="field">
+            <label for="search-box">Search</label>
+            <input type="search" id="search-box" name="search" data-testid="search-box"
+                   data-automation-id="search-box" placeholder="Search the catalogue…">
+            <span class="hint">Type: <code class="inline-code">search</code> — often has a clear button.</span>
+          </div>
+
+          <div class="field">
+            <label for="age-input">Age</label>
+            <input type="number" id="age-input" name="age" data-testid="age-input"
+                   data-automation-id="age-input" min="18" max="99" step="1" placeholder="21">
+            <span class="hint">Type: <code class="inline-code">number</code> with min/max/step. Use <code class="inline-code">clear()</code> before typing.</span>
+          </div>
+
+          <div class="field">
+            <label for="quantity-input">Quantity <span class="optional">optional</span></label>
+            <div class="input-wrap has-trail">
+              <input type="number" id="quantity-input" name="quantity" data-testid="quantity-input"
+                     data-automation-id="quantity-input" value="1" min="1" max="99">
+              <span class="trail">
+                <button type="button" class="icon-btn" id="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                <button type="button" class="icon-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+              </span>
+            </div>
+            <span class="hint">Stepper buttons are siblings of the input — practice reading the <code class="inline-code">value</code> attribute after clicking.</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:16px">
+          <label for="bio-textarea">Short bio <span class="optional">max 120 chars</span></label>
+          <textarea id="bio-textarea" name="bio" data-testid="bio-textarea" data-automation-id="bio-textarea"
+                    rows="4" maxlength="120" placeholder="Tell us about your automation journey…"></textarea>
+          <div class="char-count"><span id="bio-count">0</span>/120</div>
+          <span class="hint">Type: <code class="inline-code">textarea</code>. The counter has <code class="inline-code">id="bio-count"</code>.</span>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Fill first name <code>Ada</code>, last name <code>Lovelace</code>, email <code>ada@example.com</code>.</li>
+            <li>Assert that <code>#first-name</code> has value <code>Ada</code> using its <code>value</code> attribute.</li>
+            <li>Type 120 characters into the bio and assert the counter element reads <code>120</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("first-name").fill("Ada");
+await page.getByTestId("last-name").fill("Lovelace");
+await page.getByTestId("user-email").fill("ada@example.com");
+await expect(page.getByTestId("first-name")).toHaveValue("Ada");
+
+await page.getByTestId("bio-textarea").fill("a".repeat(120));
+await expect(page.locator("#bio-count")).toHaveText("120");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 02 FIELD STATES ============ -->
+      <h2 class="section-title" id="field-states"><span class="section-num">02</span>Field states</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Read-only, disabled, hidden &amp; validation</h3>
+            <p>Attributes that change how an element behaves. Automation has to know which ones
+            are interactable and which are only readable.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="readonly-field">Read-only reference code</label>
+            <input type="text" id="readonly-field" name="referenceCode" data-testid="readonly-field"
+                   data-automation-id="readonly-field" value="LL-2026-0042" readonly>
+            <span class="hint"><code class="inline-code">readonly</code> — you can read <code class="inline-code">value</code> but not type.</span>
+          </div>
+
+          <div class="field">
+            <label for="disabled-field">Disabled coupon</label>
+            <input type="text" id="disabled-field" name="coupon" data-testid="disabled-field"
+                   data-automation-id="disabled-field" value="EXPIRED2020" disabled>
+            <span class="hint"><code class="inline-code">disabled</code> — not interactable; assert via <code class="inline-code">toBeDisabled()</code>.</span>
+          </div>
+
+          <div class="field">
+            <label for="auto-field">Auto-filled by the app</label>
+            <input type="text" id="auto-field" name="autoValue" data-testid="auto-field"
+                   data-automation-id="auto-field" value="populated-by-script">
+            <span class="hint">Its value is set by JavaScript after load — practice waiting for it.</span>
+          </div>
+
+          <div class="field">
+            <label for="slow-field">Slow field (value set after 2s)</label>
+            <input type="text" id="slow-field" name="slowValue" data-testid="slow-field"
+                   data-automation-id="slow-field" placeholder="waiting…">
+            <span class="hint">Filled by JS 2 seconds after page load. Use an explicit wait.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:18px">
+          <label class="check" for="toggle-hidden">
+            <input type="checkbox" id="toggle-hidden" data-testid="toggle-hidden" data-automation-id="toggle-hidden">
+            <span>Reveal the hidden field</span>
+          </label>
+          <div class="field" id="hidden-field-wrap" hidden style="margin-top:10px">
+            <label for="hidden-field">Hidden field (type=hidden)</label>
+            <input type="hidden" id="hidden-field" name="csrfToken" data-testid="hidden-field"
+                   data-automation-id="hidden-field" value="tok_9f3a77c1">
+            <span class="hint"><code class="inline-code">type="hidden"</code> is invisible but readable — great for CSRF-token assertions.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:22px">
+          <fieldset>
+            <legend>Validation demo</legend>
+            <form id="validation-form" novalidate style="display:grid;gap:16px;margin-top:8px">
+              <div class="grid grid-2">
+                <div class="field" data-validate="email">
+                  <label for="val-email">Work email <span class="req">*</span></label>
+                  <input type="email" id="val-email" name="valEmail" data-testid="val-email"
+                         data-automation-id="val-email" placeholder="you@company.com" required>
+                  <span class="error-msg" id="val-email-error">Please enter a valid work email address.</span>
+                </div>
+                <div class="field" data-validate="username">
+                  <label for="val-username">Username <span class="req">*</span></label>
+                  <input type="text" id="val-username" name="valUsername" data-testid="val-username"
+                         data-automation-id="val-username" placeholder="3–15 letters, numbers or _" required>
+                  <span class="error-msg" id="val-username-error">Only letters, numbers and underscore (3–15 chars).</span>
+                </div>
+                <div class="field" data-validate="password">
+                  <label for="val-password">Password <span class="req">*</span></label>
+                  <input type="password" id="val-password" name="valPassword" data-testid="val-password"
+                         data-automation-id="val-password" placeholder="Min 8 characters" required minlength="8">
+                  <span class="error-msg" id="val-password-error">Password must be at least 8 characters.</span>
+                </div>
+                <div class="field" data-validate="digits">
+                  <label for="val-postcode">Postcode <span class="req">*</span></label>
+                  <input type="text" id="val-postcode" name="valPostcode" data-testid="val-postcode"
+                         data-automation-id="val-postcode" placeholder="6 digits" required>
+                  <span class="error-msg" id="val-postcode-error">Postcode must be exactly 6 digits.</span>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn btn-primary" id="validate-submit">Validate form</button>
+                <button type="reset" class="btn" id="validate-reset">Reset</button>
+                <span id="validation-status" class="small muted" role="status"></span>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Assert <code>#disabled-field</code> is disabled and <code>#readonly-field</code> is enabled but read-only.</li>
+            <li>Submit the validation form empty and count how many <code>.field.invalid</code> blocks appear (expect 4).</li>
+            <li>Type an invalid email, click Validate, and assert <code>#val-email-error</code> becomes visible.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+assert driver.find_element(By.ID, "disabled-field").is_enabled() is False
+assert driver.find_element(By.ID, "readonly-field").get_attribute("readonly") is not None
+
+driver.find_element(By.ID, "validate-submit").click()
+WebDriverWait(driver, 5).until(
+    EC.visibility_of_element_located((By.ID, "val-email-error"))
+)
+invalid = driver.find_elements(By.CSS_SELECTOR, ".field.invalid")
+assert len(invalid) == 4</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 03 CHECKBOXES ============ -->
+      <h2 class="section-title" id="checkboxes"><span class="section-num">03</span>Checkboxes</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Checkbox variants</h3>
+            <p>Single checkboxes, groups, a tri-state (indeterminate) master checkbox and clickable cards.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <fieldset>
+            <legend>Simple checkboxes</legend>
+            <div class="stack" style="margin-top:8px">
+              <label class="check" for="agree-terms">
+                <input type="checkbox" id="agree-terms" name="terms" data-testid="agree-terms"
+                       data-automation-id="agree-terms" checked>
+                <span>I accept the terms</span>
+              </label>
+              <label class="check" for="agree-newsletter">
+                <input type="checkbox" id="agree-newsletter" name="newsletter" data-testid="agree-newsletter"
+                       data-automation-id="agree-newsletter">
+                <span>Send me the newsletter</span>
+              </label>
+              <label class="check" for="agree-sms">
+                <input type="checkbox" id="agree-sms" name="smsAlerts" data-testid="agree-sms"
+                       data-automation-id="agree-sms" disabled>
+                <span>SMS alerts <span class="faint">(disabled)</span></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Framework group + count</legend>
+            <div class="stack" id="framework-group" style="margin-top:8px">
+              <label class="check" for="fw-selenium">
+                <input type="checkbox" class="framework-cb" id="fw-selenium" name="frameworks" value="selenium"
+                       data-testid="fw-selenium" data-automation-id="fw-selenium">
+                <span>Selenium WebDriver</span>
+              </label>
+              <label class="check" for="fw-playwright">
+                <input type="checkbox" class="framework-cb" id="fw-playwright" name="frameworks" value="playwright"
+                       data-testid="fw-playwright" data-automation-id="fw-playwright" checked>
+                <span>Playwright</span>
+              </label>
+              <label class="check" for="fw-cypress">
+                <input type="checkbox" class="framework-cb" id="fw-cypress" name="frameworks" value="cypress"
+                       data-testid="fw-cypress" data-automation-id="fw-cypress">
+                <span>Cypress</span>
+              </label>
+              <label class="check" for="fw-appium">
+                <input type="checkbox" class="framework-cb" id="fw-appium" name="frameworks" value="appium"
+                       data-testid="fw-appium" data-automation-id="fw-appium">
+                <span>Appium</span>
+              </label>
+              <div class="hint" id="framework-count" role="status" aria-live="polite">Selected: 1</div>
+            </div>
+          </fieldset>
+        </div>
+
+        <fieldset style="margin-top:18px">
+          <legend>Select-all + children</legend>
+          <label class="check" for="select-all-modules" style="margin-bottom:6px">
+            <input type="checkbox" id="select-all-modules" data-testid="select-all-modules"
+                   data-automation-id="select-all-modules">
+            <strong>Select all modules</strong>
+          </label>
+          <div class="inline-group" id="module-group">
+            <label class="check" for="mod-forms"><input type="checkbox" class="module-cb" id="mod-forms" value="forms" data-testid="mod-forms" data-automation-id="mod-forms"><span>Forms</span></label>
+            <label class="check" for="mod-tables"><input type="checkbox" class="module-cb" id="mod-tables" value="tables" data-testid="mod-tables" data-automation-id="mod-tables"><span>Tables</span></label>
+            <label class="check" for="mod-alerts"><input type="checkbox" class="module-cb" id="mod-alerts" value="alerts" data-testid="mod-alerts" data-automation-id="mod-alerts"><span>Alerts</span></label>
+            <label class="check" for="mod-uploads"><input type="checkbox" class="module-cb" id="mod-uploads" value="uploads" data-testid="mod-uploads" data-automation-id="mod-uploads"><span>Uploads</span></label>
+            <label class="check" for="mod-waits"><input type="checkbox" class="module-cb" id="mod-waits" value="waits" data-testid="mod-waits" data-automation-id="mod-waits"><span>Waits</span></label>
+          </div>
+          <p class="hint" style="margin-top:10px">The master checkbox shows the <b>indeterminate</b> state when only some children are checked — a state you cannot set with a plain click.</p>
+        </fieldset>
+
+        <div style="margin-top:18px">
+          <span class="field-label" style="display:block;margin-bottom:9px">Checkbox cards (styled inputs)</span>
+          <div class="grid grid-3">
+            <label class="check-card" for="plan-basic">
+              <input type="checkbox" id="plan-basic" name="planCard" value="basic" data-testid="plan-basic" data-automation-id="plan-basic">
+              <span><strong>Basic</strong><span>1 project, community support</span></span>
+            </label>
+            <label class="check-card" for="plan-pro">
+              <input type="checkbox" id="plan-pro" name="planCard" value="pro" data-testid="plan-pro" data-automation-id="plan-pro" checked>
+              <span><strong>Pro</strong><span>Unlimited projects, priority support</span></span>
+            </label>
+            <label class="check-card" for="plan-team">
+              <input type="checkbox" id="plan-team" name="planCard" value="team" data-testid="plan-team" data-automation-id="plan-team">
+              <span><strong>Team</strong><span>SSO, shared dashboards</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Check <code>#select-all-modules</code> and assert all 5 <code>.module-cb</code> inputs become checked.</li>
+            <li>Uncheck <code>#mod-alerts</code> and assert the master checkbox is now <b>indeterminate</b> (not fully checked).</li>
+            <li>Count checked <code>.framework-cb</code> inputs and compare with the text of <code>#framework-count</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await page.getByTestId("select-all-modules").check();
+await expect(page.locator(".module-cb")).toHaveCount(5);
+for (const cb of await page.locator(".module-cb").all()) {
+  await expect(cb).toBeChecked();
+}
+
+await page.getByTestId("mod-alerts").uncheck();
+// indeterminate is a DOM property, not a checked state
+const indeterminate = await page.locator("#select-all-modules")
+  .evaluate((el) => el.indeterminate);
+expect(indeterminate).toBe(true);</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 04 RADIOS ============ -->
+      <h2 class="section-title" id="radios"><span class="section-num">04</span>Radio buttons</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Radio groups</h3>
+            <p>Groups share a <code class="inline-code">name</code>. Selecting one deselects the rest —
+            the classic "click then assert the other is unchecked" exercise.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <fieldset>
+            <legend>Gender</legend>
+            <div class="inline-group" style="margin-top:8px">
+              <label class="check" for="gender-male">
+                <input type="radio" id="gender-male" name="gender" value="male" data-testid="gender-male" data-automation-id="gender-male">
+                <span>Male</span>
+              </label>
+              <label class="check" for="gender-female">
+                <input type="radio" id="gender-female" name="gender" value="female" data-testid="gender-female" data-automation-id="gender-female">
+                <span>Female</span>
+              </label>
+              <label class="check" for="gender-other">
+                <input type="radio" id="gender-other" name="gender" value="other" data-testid="gender-other" data-automation-id="gender-other" checked>
+                <span>Other</span>
+              </label>
+              <label class="check" for="gender-prefer">
+                <input type="radio" id="gender-prefer" name="gender" value="prefer" data-testid="gender-prefer" data-automation-id="gender-prefer" disabled>
+                <span>Prefer not to say <span class="faint">(disabled)</span></span>
+              </label>
+            </div>
+            <div class="hint" id="gender-out" style="margin-top:8px">Selected: other</div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Experience level</legend>
+            <div class="inline-group" style="margin-top:8px">
+              <label class="check" for="exp-beginner">
+                <input type="radio" id="exp-beginner" name="experience" value="beginner" data-testid="exp-beginner" data-automation-id="exp-beginner">
+                <span>Beginner</span>
+              </label>
+              <label class="check" for="exp-intermediate">
+                <input type="radio" id="exp-intermediate" name="experience" value="intermediate" data-testid="exp-intermediate" data-automation-id="exp-intermediate">
+                <span>Intermediate</span>
+              </label>
+              <label class="check" for="exp-advanced">
+                <input type="radio" id="exp-advanced" name="experience" value="advanced" data-testid="exp-advanced" data-automation-id="exp-advanced">
+                <span>Advanced</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div style="margin-top:18px">
+          <span class="field-label" style="display:block;margin-bottom:9px">Radio cards</span>
+          <div class="grid grid-3">
+            <label class="check-card" for="ship-standard">
+              <input type="radio" id="ship-standard" name="shipping" value="standard" data-testid="ship-standard" data-automation-id="ship-standard">
+              <span><strong>Standard</strong><span>5–7 days &middot; Free</span></span>
+            </label>
+            <label class="check-card" for="ship-express">
+              <input type="radio" id="ship-express" name="shipping" value="express" data-testid="ship-express" data-automation-id="ship-express" checked>
+              <span><strong>Express</strong><span>2 days &middot; $12</span></span>
+            </label>
+            <label class="check-card" for="ship-overnight">
+              <input type="radio" id="ship-overnight" name="shipping" value="overnight" data-testid="ship-overnight" data-automation-id="ship-overnight">
+              <span><strong>Overnight</strong><span>Next day &middot; $29</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Select <code>#gender-male</code> and assert <code>#gender-other</code> is no longer checked.</li>
+            <li>Assert exactly one radio in <code>input[name="shipping"]</code> is checked, and that its value is <code>express</code>.</li>
+            <li>Verify <code>#gender-prefer</code> cannot be clicked (disabled).</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Java)</summary>
+<pre class="code">WebElement male = driver.findElement(By.id("gender-male"));
+male.click();
+Assert.assertFalse(driver.findElement(By.id("gender-other")).isSelected());
+
+List&lt;WebElement&gt; checked = driver.findElements(
+    By.cssSelector("input[name=\"shipping\"]:checked"));
+Assert.assertEquals(checked.size(), 1);
+Assert.assertEquals(checked.get(0).getAttribute("value"), "express");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 05 NATIVE SELECTS ============ -->
+      <h2 class="section-title" id="selects"><span class="section-num">05</span>Native selects</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>&lt;select&gt; in all its forms</h3>
+            <p>Single select, select with a pre-selected value, grouped options, disabled options
+            and a multi-select list box.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="country-select">Country <span class="req">*</span></label>
+            <select id="country-select" name="country" data-testid="country-select" data-automation-id="country-select" required>
+              <option value="">Select a country…</option>
+              <option value="in">India</option>
+              <option value="us">United States</option>
+              <option value="gb">United Kingdom</option>
+              <option value="de">Germany</option>
+              <option value="au">Australia</option>
+              <option value="jp">Japan</option>
+              <option value="br">Brazil</option>
+              <option value="za">South Africa</option>
+            </select>
+            <span class="hint">Empty first option = "nothing selected yet". Assert <code class="inline-code">value === ""</code> initially.</span>
+          </div>
+
+          <div class="field">
+            <label for="currency-select">Preferred currency</label>
+            <select id="currency-select" name="currency" data-testid="currency-select" data-automation-id="currency-select">
+              <option value="inr" selected>Indian Rupee (INR)</option>
+              <option value="usd">US Dollar (USD)</option>
+              <option value="eur">Euro (EUR)</option>
+              <option value="gbp">British Pound (GBP)</option>
+              <option value="jpy">Japanese Yen (JPY)</option>
+            </select>
+            <span class="hint">Has a pre-selected value — assert <code class="inline-code">inr</code> before changing it.</span>
+          </div>
+
+          <div class="field">
+            <label for="vehicle-select">Vehicle (grouped options)</label>
+            <select id="vehicle-select" name="vehicle" data-testid="vehicle-select" data-automation-id="vehicle-select">
+              <option value="">Choose a vehicle…</option>
+              <optgroup label="Four wheels">
+                <option value="sedan">Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="hatchback">Hatchback</option>
+              </optgroup>
+              <optgroup label="Two wheels">
+                <option value="motorcycle">Motorcycle</option>
+                <option value="scooter">Scooter</option>
+                <option value="bicycle">Bicycle</option>
+              </optgroup>
+            </select>
+            <span class="hint">Uses <code class="inline-code">&lt;optgroup&gt;</code> — a good XPath exercise.</span>
+          </div>
+
+          <div class="field">
+            <label for="plan-select">Plan (has disabled options)</label>
+            <select id="plan-select" name="plan" data-testid="plan-select" data-automation-id="plan-select">
+              <option value="">Choose a plan…</option>
+              <option value="free">Free</option>
+              <option value="starter">Starter — $9/mo</option>
+              <option value="pro" disabled>Pro — $29/mo (sold out)</option>
+              <option value="enterprise">Enterprise — $99/mo</option>
+              <option value="custom" disabled>Custom (coming soon)</option>
+            </select>
+            <span class="hint">Two options are <code class="inline-code">disabled</code> and cannot be selected programmatically by a user.</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:16px">
+          <label for="skills-select">Skills (multi-select — hold Ctrl/Cmd to select several)</label>
+          <select id="skills-select" name="skills" multiple size="6" data-testid="skills-select"
+                 data-automation-id="skills-select">
+            <option value="xpath">XPath</option>
+            <option value="css">CSS selectors</option>
+            <option value="waits">Explicit waits</option>
+            <option value="pom">Page Object Model</option>
+            <option value="ci">CI pipelines</option>
+            <option value="api">API testing</option>
+            <option value="a11y">Accessibility testing</option>
+            <option value="perf">Performance testing</option>
+          </select>
+          <div class="hint">Type: <code class="inline-code">select multiple</code>. Selected values live in <code class="inline-code">selectedOptions</code>.
+          <span id="skills-out" role="status" style="display:block;margin-top:6px;color:var(--brand)">Selected: (none)</span></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Select <code>India</code> in <code>#country-select</code> by visible text and assert its value is <code>in</code>.</li>
+            <li>Assert <code>#plan-select</code> has exactly 2 disabled options.</li>
+            <li>Multi-select <code>xpath</code>, <code>waits</code> and <code>pom</code> in <code>#skills-select</code> and assert the count is 3.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">from selenium.webdriver.support.ui import Select
+
+country = Select(driver.find_element(By.ID, "country-select"))
+country.select_by_visible_text("India")
+assert country.first_selected_option.get_attribute("value") == "in"
+
+plan = Select(driver.find_element(By.ID, "plan-select"))
+disabled = [o for o in plan.options if not o.is_enabled()]
+assert len(disabled) == 2
+
+skills = Select(driver.find_element(By.ID, "skills-select"))
+skills.select_by_value("xpath")
+skills.select_by_value("waits")
+skills.select_by_value("pom")
+assert len(skills.all_selected_options) == 3</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 06 CUSTOM DROPDOWN ============ -->
+      <h2 class="section-title" id="custom-dropdown"><span class="section-num">06</span>Custom dropdown</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Non-native dropdown</h3>
+            <p>This is <b>not</b> a <code class="inline-code">&lt;select&gt;</code> — it is a button plus a
+            list of divs. You must click to open it, then click the option. Locators like
+            <code class="inline-code">Select()</code> will fail here, on purpose.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <span class="field-label" id="priority-label">Priority</span>
+            <div class="menu-wrap" style="margin-top:7px">
+              <button type="button" class="menu-btn" id="priority-btn" data-testid="priority-btn"
+                      data-automation-id="priority-btn" aria-haspopup="listbox" aria-expanded="false"
+                      aria-labelledby="priority-label priority-btn" style="width:100%">
+                <span data-menu-label>Choose priority…</span>
+                <span aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="menu" id="priority-menu" role="listbox" aria-label="Priority">
+                <button type="button" class="menu-item" role="option" data-value="low" data-testid="priority-low" data-automation-id="priority-low" aria-checked="false">Low</button>
+                <button type="button" class="menu-item" role="option" data-value="medium" data-testid="priority-medium" data-automation-id="priority-medium" aria-checked="false">Medium</button>
+                <button type="button" class="menu-item" role="option" data-value="high" data-testid="priority-high" data-automation-id="priority-high" aria-checked="false">High</button>
+                <div class="menu-sep"></div>
+                <button type="button" class="menu-item" role="option" data-value="critical" data-testid="priority-critical" data-automation-id="priority-critical" aria-checked="false">Critical (P0)</button>
+              </div>
+            </div>
+            <span class="hint">Open with <code class="inline-code">#priority-btn</code>, then click an item inside <code class="inline-code">#priority-menu</code>.</span>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="sort-label">Sort by</span>
+            <div class="menu-wrap" style="margin-top:7px">
+              <button type="button" class="menu-btn" id="sort-btn" data-testid="sort-btn"
+                      data-automation-id="sort-btn" aria-haspopup="listbox" aria-expanded="false"
+                      aria-labelledby="sort-label sort-btn" style="width:100%">
+                <span data-menu-label>Newest first</span>
+                <span aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="menu" id="sort-menu" role="listbox" aria-label="Sort by">
+                <button type="button" class="menu-item" role="option" data-value="newest" data-testid="sort-newest" data-automation-id="sort-newest" aria-checked="true">Newest first</button>
+                <button type="button" class="menu-item" role="option" data-value="oldest" data-testid="sort-oldest" data-automation-id="sort-oldest" aria-checked="false">Oldest first</button>
+                <button type="button" class="menu-item" role="option" data-value="az" data-testid="sort-az" data-automation-id="sort-az" aria-checked="false">Name A → Z</button>
+                <button type="button" class="menu-item" role="option" data-value="za" data-testid="sort-za" data-automation-id="sort-za" aria-checked="false">Name Z → A</button>
+              </div>
+            </div>
+            <span class="hint">Pre-selected option has <code class="inline-code">aria-checked="true"</code>.</span>
+          </div>
+        </div>
+
+        <div class="alert alert-info" style="margin-top:18px" role="status" id="dropdown-result">
+          <span aria-hidden="true">&#8505;</span>
+          <div><strong>No selection yet</strong><p>Pick a priority to see the app react.</p></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#priority-btn</code> to open the list, then click the <code>High</code> option.</li>
+            <li>Assert the button label now reads <code>High</code> and <code>#dropdown-result</code> mentions High.</li>
+            <li>Assert the menu is closed again (it closes itself after selection).</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("priority-btn").click();
+await page.getByTestId("priority-high").click();
+
+await expect(page.getByTestId("priority-btn")).toContainText("High");
+await expect(page.locator("#dropdown-result")).toContainText("High");
+await expect(page.locator("#priority-menu")).toBeHidden();</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 07 COMBOBOX ============ -->
+      <h2 class="section-title" id="combobox"><span class="section-num">07</span>Searchable combobox</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Typeahead / autocomplete</h3>
+            <p>Type to filter a list of options rendered as you go. The list is a sibling of the input
+            with <code class="inline-code">role="listbox"</code> — classic autocomplete pattern.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="field" style="max-width:520px">
+          <label for="language-combo">Favourite programming language</label>
+          <div class="combo" id="language-combo">
+            <input type="text" class="combo-input" id="language-combo-input" name="language"
+                   data-testid="language-combo-input" data-automation-id="language-combo-input"
+                   placeholder="Type to search — e.g. “py” or “script”"
+                   role="combobox" aria-expanded="false" aria-controls="language-combo-list"
+                   aria-autocomplete="list" autocomplete="off">
+            <span class="combo-caret" aria-hidden="true">&#9662;</span>
+            <div class="combo-list" id="language-combo-list" role="listbox" aria-label="Languages"></div>
+          </div>
+          <span class="hint">24 options. Filtering is case-insensitive. Clicking an option fills the input and closes the list.</span>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Type <code>pyth</code> into <code>#language-combo-input</code> and wait for the listbox to appear.</li>
+            <li>Assert every visible option's text contains "Python" (case-insensitive).</li>
+            <li>Click the first option and assert the input value is <code>Python</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">box = driver.find_element(By.ID, "language-combo-input")
+box.send_keys("pyth")
+
+WebDriverWait(driver, 5).until(
+    EC.visibility_of_element_located((By.ID, "language-combo-list"))
+)
+opts = driver.find_elements(By.CSS_SELECTOR, "#language-combo-list .combo-opt")
+assert all("python" in o.text.lower() for o in opts)
+
+opts[0].click()
+assert box.get_attribute("value") == "Python"</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 08 CASCADING ============ -->
+      <h2 class="section-title" id="cascading"><span class="section-num">08</span>Cascading dropdowns</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Dependent selects</h3>
+            <p>Each dropdown unlocks the next. The child is <code class="inline-code">disabled</code>
+            until the parent has a value — the most common real-world select pattern.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="region-select">Region</label>
+            <select id="region-select" name="region" data-testid="region-select" data-automation-id="region-select">
+              <option value="">Select region…</option>
+              <option value="asia">Asia</option>
+              <option value="europe">Europe</option>
+              <option value="americas">Americas</option>
+              <option value="africa">Africa</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="city-select">City</label>
+            <select id="city-select" name="city" data-testid="city-select" data-automation-id="city-select" disabled>
+              <option value="">Select region first…</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="branch-select">Branch</label>
+            <select id="branch-select" name="branch" data-testid="branch-select" data-automation-id="branch-select" disabled>
+              <option value="">Select city first…</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="hint" style="margin-top:12px" role="status" id="cascade-status">Waiting for region…</div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Assert <code>#city-select</code> is disabled before any region is chosen.</li>
+            <li>Select <code>Asia</code>, wait until <code>#city-select</code> is enabled, then select <code>Mumbai</code>.</li>
+            <li>Assert <code>#branch-select</code> now has more than one option.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await expect(page.getByTestId("city-select")).toBeDisabled();
+
+await page.getByTestId("region-select").selectOption("asia");
+await expect(page.getByTestId("city-select")).toBeEnabled();
+await page.getByTestId("city-select").selectOption("mumbai");
+
+const branches = await page.getByTestId("branch-select").locator("option").count();
+expect(branches).toBeGreaterThan(1);</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 09 TAG INPUT ============ -->
+      <h2 class="section-title" id="tag-input"><span class="section-num">09</span>Tag / chip input</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Tag input with chips</h3>
+            <p>Type a value and press <kbd class="key">Enter</kbd> (or comma) to create a chip.
+            Each chip has its own remove button — good for testing repeated dynamic elements.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="field" style="max-width:560px">
+          <label for="tag-input-field">Tags</label>
+          <div class="tag-input-wrap" id="tag-wrap">
+            <span class="chip" data-testid="tag-selenium" data-automation-id="tag-selenium">Selenium<button type="button" aria-label="Remove Selenium tag" data-tag-remove="Selenium">&times;</button></span>
+            <span class="chip" data-testid="tag-playwright" data-automation-id="tag-playwright">Playwright<button type="button" aria-label="Remove Playwright tag" data-tag-remove="Playwright">&times;</button></span>
+            <input type="text" id="tag-input-field" name="tags" data-testid="tag-input-field"
+                   data-automation-id="tag-input-field" placeholder="Add a tag and press Enter…"
+                   aria-describedby="tag-hint">
+          </div>
+          <span class="hint" id="tag-hint">Press <b>Enter</b> or <b>,</b> to add. Backspace on an empty input removes the last chip.
+          <span id="tag-count" role="status" style="display:block;margin-top:6px">Tags: 2</span></span>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Type <code>Cypress</code> and press Enter; assert a chip with that text now exists.</li>
+            <li>Assert the counter <code>#tag-count</code> reads <code>Tags: 3</code>.</li>
+            <li>Remove the <code>Selenium</code> chip via its button and assert it is gone.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("tag-input-field").fill("Cypress");
+await page.getByTestId("tag-input-field").press("Enter");
+await expect(page.getByText("Cypress", { exact: true }).first()).toBeVisible();
+await expect(page.locator("#tag-count")).toHaveText("Tags: 3");
+
+await page.getByLabel("Remove Selenium tag").click();
+await expect(page.getByTestId("tag-selenium")).toHaveCount(0);</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:30px">
+        <span aria-hidden="true">&#10003;</span>
+        <div>
+          <strong>Form Essentials complete</strong>
+          <p>Next: <a href="dates-ranges.html">Dates &amp; Ranges</a> for date pickers, sliders and ratings,
+          or <a href="wizard-submit.html">Wizard &amp; Submit</a> for full-flow practice.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-coach.js"></script>
+<script src="../assets/js/sections/form-essentials.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inner frame</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 18px; background: #fff; color: #14172a; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  input, button { font: inherit; padding: 7px 11px; border: 1px solid #cfd4e6; border-radius: 6px; }
+  button { background: #4f46e5; color: #fff; border: none; cursor: pointer; }
+  #frame-msg { margin-top: 12px; font-size: 13px; color: #059669; font-weight: 600; min-height: 18px; }
+</style>
+</head>
+<body>
+  <h2 id="frame-title">Inner frame content</h2>
+  <p style="font-size:13px;color:#565e80;margin:0 0 12px">
+    This document lives inside an <code>&lt;iframe&gt;</code>. Nothing outside can see these
+    elements without switching frames first.
+  </p>
+  <label for="frame-input">Message</label><br>
+  <input type="text" id="frame-input" name="frameMsg" data-testid="frame-input"
+         data-automation-id="frame-input" placeholder="Type inside the frame…"><br><br>
+  <button type="button" id="frame-submit" data-testid="frame-submit" data-automation-id="frame-submit">Send</button>
+  <button type="button" id="frame-echo" data-testid="frame-echo" data-automation-id="frame-echo">Echo value</button>
+  <p id="frame-msg" role="status"></p>
+  <script>
+    document.getElementById("frame-submit").addEventListener("click", function () {
+      document.getElementById("frame-msg").textContent = "Submitted from inside the frame.";
+    });
+    document.getElementById("frame-echo").addEventListener("click", function () {
+      var v = document.getElementById("frame-input").value;
+      document.getElementById("frame-msg").textContent = v ? "You typed: " + v : "Input is empty.";
+    });
+  </script>
+</body>
+</html>

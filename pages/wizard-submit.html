@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wizard &amp; Submit — LocatorLab</title>
+<meta name="description" content="A realistic registration form with live validation, password strength, OTP input and a multi-step wizard — the end-to-end flows automation learners need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">This page</div>
+        <a href="#registration"><span class="nav-ico">&#8226;</span>Registration form</a>
+        <a href="#password"><span class="nav-ico">&#8226;</span>Password strength</a>
+        <a href="#otp"><span class="nav-ico">&#8226;</span>OTP input</a>
+        <a href="#wizard"><span class="nav-ico">&#8226;</span>Multi-step wizard</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Wizard &amp; Submit<small>Full end-to-end flows</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Page 4 of 5</span>
+        <h1>Wizard &amp; Submit</h1>
+        <p>Where the real practice lives: a registration form with live validation and a slow
+        submit, a 6-digit OTP row, and a four-step wizard with per-step validation and a review screen.
+        Automate these end to end and you can automate almost anything.</p>
+      </div>
+
+      <!-- ============ 01 REGISTRATION ============ -->
+      <h2 class="section-title" id="registration"><span class="section-num">01</span>Registration form</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Create your account</h3>
+            <p>Eight fields, live validation, a fake 1.6-second submit, and a result panel that
+            switches between success and error.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <form id="register-form" novalidate class="stack">
+          <div class="grid grid-2">
+            <div class="field" data-v="required">
+              <label for="reg-name">Full name <span class="req">*</span></label>
+              <input type="text" id="reg-name" name="fullName" data-testid="reg-name" data-automation-id="reg-name"
+                     placeholder="Ada Lovelace" autocomplete="name" required>
+              <span class="error-msg" id="reg-name-error">Full name is required.</span>
+            </div>
+            <div class="field" data-v="email">
+              <label for="reg-email">Email <span class="req">*</span></label>
+              <input type="email" id="reg-email" name="email" data-testid="reg-email" data-automation-id="reg-email"
+                     placeholder="ada@example.com" autocomplete="email" required>
+              <span class="error-msg" id="reg-email-error">Enter a valid email address.</span>
+            </div>
+            <div class="field" data-v="phone">
+              <label for="reg-phone">Mobile number <span class="req">*</span></label>
+              <input type="tel" id="reg-phone" name="mobile" data-testid="reg-phone" data-automation-id="reg-phone"
+                     placeholder="10-digit number" autocomplete="tel" required>
+              <span class="error-msg" id="reg-phone-error">Mobile number must be 10 digits.</span>
+            </div>
+            <div class="field" data-v="required">
+              <label for="reg-dob">Date of birth <span class="req">*</span></label>
+              <input type="date" id="reg-dob" name="dob" data-testid="reg-dob" data-automation-id="reg-dob" required>
+              <span class="error-msg" id="reg-dob-error">Please choose your date of birth.</span>
+            </div>
+            <div class="field">
+              <label for="reg-country">Country <span class="req">*</span></label>
+              <select id="reg-country" name="country" data-testid="reg-country" data-automation-id="reg-country" required>
+                <option value="">Select country…</option>
+                <option value="in">India</option>
+                <option value="us">United States</option>
+                <option value="gb">United Kingdom</option>
+                <option value="de">Germany</option>
+                <option value="au">Australia</option>
+                <option value="sg">Singapore</option>
+              </select>
+              <span class="error-msg" id="reg-country-error">Please select a country.</span>
+            </div>
+            <div class="field" data-v="none">
+              <span class="field-label" id="reg-gender-label">Gender <span class="optional">optional</span></span>
+              <div class="inline-group" role="radiogroup" aria-labelledby="reg-gender-label" style="margin-top:5px">
+                <label class="check" for="reg-gender-f">
+                  <input type="radio" id="reg-gender-f" name="gender" value="female" data-testid="reg-gender-f" data-automation-id="reg-gender-f">
+                  <span>Female</span>
+                </label>
+                <label class="check" for="reg-gender-m">
+                  <input type="radio" id="reg-gender-m" name="gender" value="male" data-testid="reg-gender-m" data-automation-id="reg-gender-m">
+                  <span>Male</span>
+                </label>
+                <label class="check" for="reg-gender-o">
+                  <input type="radio" id="reg-gender-o" name="gender" value="other" data-testid="reg-gender-o" data-automation-id="reg-gender-o" checked>
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field" id="reg-password-field">
+            <label for="reg-password">Password <span class="req">*</span></label>
+            <div class="input-wrap has-trail">
+              <input type="password" id="reg-password" name="password" data-testid="reg-password"
+                     data-automation-id="reg-password" placeholder="Min 8 chars, mix of letters &amp; numbers"
+                     autocomplete="new-password" required>
+              <span class="trail">
+                <button type="button" class="icon-btn" id="reg-pw-toggle" data-testid="reg-pw-toggle"
+                        data-automation-id="reg-pw-toggle" aria-label="Show password" aria-pressed="false">&#128065;</button>
+              </span>
+            </div>
+            <div class="progress" style="margin-top:9px"><div class="progress-bar" id="reg-pw-bar"></div></div>
+            <div class="row" style="justify-content:space-between;margin-top:5px">
+              <span class="hint" id="reg-pw-text" role="status">Password strength: —</span>
+              <span class="hint" id="reg-pw-rules">Min 8 chars, 1 letter, 1 number</span>
+            </div>
+            <span class="error-msg" id="reg-password-error">Password must be at least 8 characters with a letter and a number.</span>
+          </div>
+
+          <div class="field">
+            <label class="check" for="reg-terms" style="align-items:flex-start">
+              <input type="checkbox" id="reg-terms" name="terms" data-testid="reg-terms" data-automation-id="reg-terms" style="margin-top:3px">
+              <span>I agree to the <a href="#registration" id="reg-terms-link">Terms of Service</a> and Privacy Policy <span class="req">*</span></span>
+            </label>
+            <span class="error-msg" id="reg-terms-error">You must accept the terms to continue.</span>
+          </div>
+
+          <div class="row">
+            <button type="submit" class="btn btn-primary btn-lg" id="reg-submit" data-testid="reg-submit"
+                    data-automation-id="reg-submit">Create account</button>
+            <button type="reset" class="btn btn-lg" id="reg-reset" data-testid="reg-reset" data-automation-id="reg-reset">Reset</button>
+          </div>
+        </form>
+
+        <div id="reg-result" hidden style="margin-top:20px" role="status" aria-live="polite">
+          <div class="alert alert-success" id="reg-result-ok">
+            <span aria-hidden="true">&#10003;</span>
+            <div>
+              <strong>Account created</strong>
+              <p>Welcome aboard. Your account id is <code class="inline-code" id="reg-account-id">—</code>.</p>
+            </div>
+          </div>
+          <div class="alert alert-error" id="reg-result-err" hidden>
+            <span aria-hidden="true">&#10007;</span>
+            <div>
+              <strong>Registration failed</strong>
+              <p>An account with this email already exists. Try another.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Submit empty and assert exactly 7 fields show an error message.</li>
+            <li>Fill everything correctly, submit, and wait for <code>#reg-submit</code> to lose <code class="inline-code">btn-loading</code>.</li>
+            <li>Assert <code>#reg-result-ok</code> is visible and <code>#reg-account-id</code> matches <code class="inline-code">/^ACC-\d{6}$/</code>.</li>
+            <li>Re-submit with <code>taken@example.com</code> and assert the error panel instead.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import re
+
+driver.find_element(By.ID, "reg-submit").click()
+WebDriverWait(driver, 5).until(
+    EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".field.invalid"))
+)
+assert len(driver.find_elements(By.CSS_SELECTOR, ".field.invalid")) == 7
+
+driver.find_element(By.ID, "reg-name").send_keys("Ada Lovelace")
+driver.find_element(By.ID, "reg-email").send_keys("ada@example.com")
+driver.find_element(By.ID, "reg-phone").send_keys("9876543210")
+driver.find_element(By.ID, "reg-dob").send_keys("1990-12-10")
+Select(driver.find_element(By.ID, "reg-country")).select_by_value("in")
+driver.find_element(By.ID, "reg-password").send_keys("Secret123")
+driver.find_element(By.ID, "reg-terms").click()
+driver.find_element(By.ID, "reg-submit").click()
+
+WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "reg-result-ok")))
+acc = driver.find_element(By.ID, "reg-account-id").text
+assert re.match(r"^ACC-\d{6}$", acc)</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 02 PASSWORD ============ -->
+      <h2 class="section-title" id="password"><span class="section-num">02</span>Password strength &amp; reveal</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Standalone password playground</h3>
+            <p>Same idea, isolated. The strength bar is driven by a computed score exposed as
+            <code class="inline-code">data-score</code> on <code class="inline-code">#pw-meter</code> —
+            an easy assertion target.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="pw-field">Password</label>
+            <div class="input-wrap has-trail">
+              <input type="password" id="pw-field" name="pw" data-testid="pw-field" data-automation-id="pw-field"
+                     placeholder="Type something…" autocomplete="off">
+              <span class="trail">
+                <button type="button" class="icon-btn" id="pw-toggle" data-testid="pw-toggle"
+                        data-automation-id="pw-toggle" aria-label="Show password" aria-pressed="false">&#128065;</button>
+              </span>
+            </div>
+            <div class="progress" style="margin-top:10px">
+              <div class="progress-bar" id="pw-meter" data-testid="pw-meter" data-automation-id="pw-meter" data-score="0"></div>
+            </div>
+          </div>
+          <div>
+            <p class="small muted" style="margin-bottom:10px">Score breakdown (0–4)</p>
+            <ul class="small muted" style="padding-left:20px;line-height:1.9">
+              <li>8+ characters</li>
+              <li>Mix of upper &amp; lower case</li>
+              <li>At least one number</li>
+              <li>At least one symbol</li>
+            </ul>
+            <div class="alert alert-info" style="margin-top:12px" role="status" id="pw-verdict">
+              <div><strong>Score: 0 / 4</strong><p>Start typing…</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Type <code>abc</code> and assert <code>#pw-meter</code> has <code>data-score="1"</code>.</li>
+            <li>Type <code>Abcdef1!</code> and assert the score is <code>4</code>.</li>
+            <li>Click <code>#pw-toggle</code> and assert <code>#pw-field</code>'s type becomes <code>text</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">const field = page.getByTestId("pw-field");
+await field.fill("Abcdef1!");
+const score = await page.getByTestId("pw-meter").getAttribute("data-score");
+expect(score).toBe("4");
+
+await page.getByTestId("pw-toggle").click();
+await expect(field).toHaveAttribute("type", "text");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 03 OTP ============ -->
+      <h2 class="section-title" id="otp"><span class="section-num">03</span>OTP input row</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Six-digit verification code</h3>
+            <p>Separate boxes with auto-advance and auto-backspace. The composed code lives in a
+            hidden mirror field, so you never have to stitch six values together in your test.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="field" style="max-width:480px">
+          <span class="field-label" id="otp-label">Verification code</span>
+          <div class="otp-row" id="otp-row" role="group" aria-labelledby="otp-label" style="margin-top:9px">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-1" data-testid="otp-1" data-automation-id="otp-1" aria-label="OTP digit 1">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-2" data-testid="otp-2" data-automation-id="otp-2" aria-label="OTP digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-3" data-testid="otp-3" data-automation-id="otp-3" aria-label="OTP digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-4" data-testid="otp-4" data-automation-id="otp-4" aria-label="OTP digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-5" data-testid="otp-5" data-automation-id="otp-5" aria-label="OTP digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" id="otp-6" data-testid="otp-6" data-automation-id="otp-6" aria-label="OTP digit 6">
+          </div>
+          <input type="hidden" id="otp-value" name="otp" data-testid="otp-value" data-automation-id="otp-value" value="">
+          <div class="row" style="margin-top:14px">
+            <button type="button" class="btn btn-primary" id="otp-verify" data-testid="otp-verify" data-automation-id="otp-verify">Verify code</button>
+            <button type="button" class="btn" id="otp-resend" data-testid="otp-resend" data-automation-id="otp-resend">Resend code</button>
+            <button type="button" class="btn btn-ghost" id="otp-clear" data-testid="otp-clear" data-automation-id="otp-clear">Clear</button>
+          </div>
+          <p class="hint" style="margin-top:12px" role="status" id="otp-status">
+            Demo code: <code class="inline-code">482913</code>
+          </p>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Type <code>482913</code> digit by digit and assert focus auto-advances to the next box.</li>
+            <li>Assert the hidden field <code>#otp-value</code> equals <code>482913</code>.</li>
+            <li>Click Verify and assert <code>#otp-status</code> reports success.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">for (let i = 1; i &lt;= 6; i++) {
+  await page.getByTestId("otp-" + i).fill(String("482913"[i - 1]));
+}
+await expect(page.getByTestId("otp-value")).toHaveValue("482913");
+
+await page.getByTestId("otp-verify").click();
+await expect(page.locator("#otp-status")).toContainText("verified");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 04 WIZARD ============ -->
+      <h2 class="section-title" id="wizard"><span class="section-num">04</span>Multi-step wizard</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Four-step checkout wizard</h3>
+            <p>Each step validates before advancing. Step 4 shows a review summary read from the
+            earlier steps — the classic "assert the data round-tripped" exercise.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="wizard-steps" id="wiz-steps">
+          <div class="wstep active" data-step="1"><span class="n">1</span>Personal</div>
+          <div class="wstep" data-step="2"><span class="n">2</span>Address</div>
+          <div class="wstep" data-step="3"><span class="n">3</span>Payment</div>
+          <div class="wstep" data-step="4"><span class="n">4</span>Review</div>
+        </div>
+
+        <form id="wizard-form" novalidate>
+          <!-- step 1 -->
+          <section class="wiz-panel" data-panel="1">
+            <div class="grid grid-2">
+              <div class="field" data-wv="required">
+                <label for="wiz-first">First name <span class="req">*</span></label>
+                <input type="text" id="wiz-first" name="wizFirst" data-testid="wiz-first" data-automation-id="wiz-first" required>
+                <span class="error-msg" id="wiz-first-error">Required.</span>
+              </div>
+              <div class="field" data-wv="required">
+                <label for="wiz-last">Last name <span class="req">*</span></label>
+                <input type="text" id="wiz-last" name="wizLast" data-testid="wiz-last" data-automation-id="wiz-last" required>
+                <span class="error-msg" id="wiz-last-error">Required.</span>
+              </div>
+              <div class="field" data-wv="email">
+                <label for="wiz-email">Email <span class="req">*</span></label>
+                <input type="email" id="wiz-email" name="wizEmail" data-testid="wiz-email" data-automation-id="wiz-email" required>
+                <span class="error-msg" id="wiz-email-error">Enter a valid email.</span>
+              </div>
+              <div class="field" data-wv="phone">
+                <label for="wiz-phone">Phone <span class="req">*</span></label>
+                <input type="tel" id="wiz-phone" name="wizPhone" data-testid="wiz-phone" data-automation-id="wiz-phone" placeholder="10 digits" required>
+                <span class="error-msg" id="wiz-phone-error">10 digits required.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- step 2 -->
+          <section class="wiz-panel" data-panel="2" hidden>
+            <div class="grid grid-2">
+              <div class="field" data-wv="required" style="grid-column:1/-1">
+                <label for="wiz-street">Street address <span class="req">*</span></label>
+                <input type="text" id="wiz-street" name="wizStreet" data-testid="wiz-street" data-automation-id="wiz-street" required>
+                <span class="error-msg" id="wiz-street-error">Required.</span>
+              </div>
+              <div class="field" data-wv="required">
+                <label for="wiz-city">City <span class="req">*</span></label>
+                <input type="text" id="wiz-city" name="wizCity" data-testid="wiz-city" data-automation-id="wiz-city" required>
+                <span class="error-msg" id="wiz-city-error">Required.</span>
+              </div>
+              <div class="field" data-wv="digits">
+                <label for="wiz-zip">ZIP code <span class="req">*</span></label>
+                <input type="text" id="wiz-zip" name="wizZip" data-testid="wiz-zip" data-automation-id="wiz-zip" placeholder="6 digits" required>
+                <span class="error-msg" id="wiz-zip-error">Must be 6 digits.</span>
+              </div>
+              <div class="field" data-wv="required">
+                <label for="wiz-state">State <span class="req">*</span></label>
+                <select id="wiz-state" name="wizState" data-testid="wiz-state" data-automation-id="wiz-state" required>
+                  <option value="">Select state…</option>
+                  <option value="MH">Maharashtra</option>
+                  <option value="KA">Karnataka</option>
+                  <option value="DL">Delhi</option>
+                  <option value="TN">Tamil Nadu</option>
+                  <option value="WB">West Bengal</option>
+                </select>
+                <span class="error-msg" id="wiz-state-error">Please select a state.</span>
+              </div>
+              <div class="field">
+                <label for="wiz-landmark">Landmark <span class="optional">optional</span></label>
+                <input type="text" id="wiz-landmark" name="wizLandmark" data-testid="wiz-landmark" data-automation-id="wiz-landmark">
+              </div>
+            </div>
+          </section>
+
+          <!-- step 3 -->
+          <section class="wiz-panel" data-panel="3" hidden>
+            <div class="grid grid-2">
+              <div class="field" style="grid-column:1/-1">
+                <span class="field-label" id="wiz-method-label">Payment method</span>
+                <div class="inline-group" role="radiogroup" aria-labelledby="wiz-method-label" style="margin-top:5px">
+                  <label class="check-card" for="wiz-pm-card">
+                    <input type="radio" id="wiz-pm-card" name="wizMethod" value="card" data-testid="wiz-pm-card" data-automation-id="wiz-pm-card" checked>
+                    <span><strong>Credit / Debit card</strong><span>Visa, Mastercard, Amex</span></span>
+                  </label>
+                  <label class="check-card" for="wiz-pm-upi">
+                    <input type="radio" id="wiz-pm-upi" name="wizMethod" value="upi" data-testid="wiz-pm-upi" data-automation-id="wiz-pm-upi">
+                    <span><strong>UPI</strong><span>Any UPI ID</span></span>
+                  </label>
+                  <label class="check-card" for="wiz-pm-cod">
+                    <input type="radio" id="wiz-pm-cod" name="wizMethod" value="cod" data-testid="wiz-pm-cod" data-automation-id="wiz-pm-cod">
+                    <span><strong>Cash on delivery</strong><span>Pay at the door</span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="field" data-wv="digits16" id="wiz-card-field">
+                <label for="wiz-card">Card number <span class="req">*</span></label>
+                <input type="text" id="wiz-card" name="wizCard" data-testid="wiz-card" data-automation-id="wiz-card"
+                       inputmode="numeric" placeholder="16 digits — try 4111111111111111" maxlength="19" required>
+                <span class="error-msg" id="wiz-card-error">Card number must be 16 digits.</span>
+              </div>
+              <div class="field" data-wv="expiry" id="wiz-expiry-field">
+                <label for="wiz-expiry">Expiry <span class="req">*</span></label>
+                <input type="month" id="wiz-expiry" name="wizExpiry" data-testid="wiz-expiry" data-automation-id="wiz-expiry" required>
+                <span class="error-msg" id="wiz-expiry-error">Expiry month/year required.</span>
+              </div>
+              <div class="field" data-wv="cvv" id="wiz-cvv-field">
+                <label for="wiz-cvv">CVV <span class="req">*</span></label>
+                <input type="password" id="wiz-cvv" name="wizCvv" data-testid="wiz-cvv" data-automation-id="wiz-cvv"
+                       inputmode="numeric" maxlength="4" placeholder="3–4 digits" required>
+                <span class="error-msg" id="wiz-cvv-error">CVV must be 3 or 4 digits.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- step 4 -->
+          <section class="wiz-panel" data-panel="4" hidden>
+            <div class="card" style="margin:0;background:var(--bg-elev)">
+              <h4 style="margin-bottom:14px">Review your details</h4>
+              <dl class="kv" id="wiz-review">
+                <dt>Full name</dt><dd data-review="name">—</dd>
+                <dt>Email</dt><dd data-review="email">—</dd>
+                <dt>Phone</dt><dd data-review="phone">—</dd>
+                <dt>Address</dt><dd data-review="address">—</dd>
+                <dt>Payment</dt><dd data-review="payment">—</dd>
+                <dt>Order total</dt><dd data-review="total">—</dd>
+              </dl>
+            </div>
+            <label class="check" for="wiz-confirm" style="margin-top:16px">
+              <input type="checkbox" id="wiz-confirm" name="wizConfirm" data-testid="wiz-confirm" data-automation-id="wiz-confirm">
+              <span>I confirm the information above is correct <span class="req">*</span></span>
+            </label>
+            <span class="error-msg" id="wiz-confirm-error">Please confirm before placing the order.</span>
+          </section>
+
+          <div class="row" style="margin-top:24px;justify-content:space-between">
+            <button type="button" class="btn btn-lg" id="wiz-back" data-testid="wiz-back" data-automation-id="wiz-back" disabled>&#8592; Back</button>
+            <span class="hint" id="wiz-status" role="status">Step 1 of 4</span>
+            <button type="button" class="btn btn-primary btn-lg" id="wiz-next" data-testid="wiz-next" data-automation-id="wiz-next">Next &#8594;</button>
+            <button type="button" class="btn btn-primary btn-lg" id="wiz-place" data-testid="wiz-place" data-automation-id="wiz-place" hidden>Place order</button>
+          </div>
+        </form>
+
+        <div id="wiz-done" hidden style="margin-top:22px" role="status" aria-live="polite">
+          <div class="alert alert-success">
+            <span aria-hidden="true">&#127881;</span>
+            <div>
+              <strong>Order placed!</strong>
+              <p>Order id <code class="inline-code" id="wiz-order-id">—</code> — a confirmation email is on its way.</p>
+            </div>
+          </div>
+          <button type="button" class="btn" id="wiz-restart" data-testid="wiz-restart" data-automation-id="wiz-restart" style="margin-top:12px">Start over</button>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Fill step 1 incorrectly, click Next, and assert step 2 is still hidden.</li>
+            <li>Complete all 4 steps and assert the Review screen echoes the data you entered.</li>
+            <li>Switch payment to UPI and assert the card fields disappear from step 3.</li>
+            <li>Place the order and assert <code>#wiz-order-id</code> matches <code class="inline-code">/^ORD-\d{5}$/</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("wiz-first").fill("Ada");
+await page.getByTestId("wiz-last").fill("Lovelace");
+await page.getByTestId("wiz-email").fill("ada@example.com");
+await page.getByTestId("wiz-phone").fill("9876543210");
+await page.getByTestId("wiz-next").click();
+
+await expect(page.getByTestId("wiz-street")).toBeVisible();   // still step 2? no — step 2 shown
+await page.getByTestId("wiz-street").fill("12 Analytical Row");
+await page.getByTestId("wiz-city").fill("Bengaluru");
+await page.getByTestId("wiz-zip").fill("560001");
+await page.getByTestId("wiz-state").selectOption("KA");
+await page.getByTestId("wiz-next").click();
+
+await page.getByTestId("wiz-pm-upi").check();
+await expect(page.getByTestId("wiz-card")).toBeHidden();
+await page.getByTestId("wiz-next").click();
+
+await expect(page.locator('[data-review="email"]')).toHaveText("ada@example.com");
+await page.getByTestId("wiz-confirm").check();
+await page.getByTestId("wiz-place").click();
+
+await expect(page.locator("#wiz-order-id")).toHaveText(/^ORD-\d{5}$/);</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:30px">
+        <span aria-hidden="true">&#10003;</span>
+        <div>
+          <strong>Wizard &amp; Submit complete</strong>
+          <p>Final stop: <a href="behaviors.html">Interactions &amp; Waits</a> — modals, alerts, tables, drag &amp; drop, iframes and shadow DOM.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-coach.js"></script>
+<script src="../assets/js/sections/wizard-submit.js"></script>
+</body>
+</html>

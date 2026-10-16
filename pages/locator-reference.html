@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Locator Reference — LocatorLab</title>
+<meta name="description" content="Searchable table of every stable locator on LocatorLab — filter by page, copy any selector, and see the matching Selenium and Playwright calls.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials</a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges</a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons</a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Reference</div>
+        <a href="#ref-all" data-filter="all"><span class="nav-ico">&#8226;</span>All elements</a>
+        <a href="#ref-all" data-filter="form-essentials.html"><span class="nav-ico">&#8226;</span>Form essentials</a>
+        <a href="#ref-all" data-filter="dates-ranges.html"><span class="nav-ico">&#8226;</span>Dates &amp; ranges</a>
+        <a href="#ref-all" data-filter="files-buttons.html"><span class="nav-ico">&#8226;</span>Files &amp; buttons</a>
+        <a href="#ref-all" data-filter="wizard-submit.html"><span class="nav-ico">&#8226;</span>Wizard &amp; submit</a>
+        <a href="#ref-all" data-filter="behaviors.html"><span class="nav-ico">&#8226;</span>Interactions</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Locator Reference<small>Every stable selector on the site</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Reference</span>
+        <h1>Locator Reference</h1>
+        <p>Auto-generated from the HTML itself, so it can never drift out of sync. Search by name,
+        id or <code class="inline-code">data-testid</code>; filter by page; copy any cell.</p>
+      </div>
+
+      <div class="stats" style="margin:0 0 26px">
+        <div class="stat"><b id="stat-total">—</b><span>Stable targets</span></div>
+        <div class="stat"><b id="stat-pages">5</b><span>Practice pages</span></div>
+        <div class="stat"><b>4</b><span>Attrs per element</span></div>
+        <div class="stat"><b>2</b><span>Frameworks shown</span></div>
+      </div>
+
+      <div class="card" style="padding:16px 18px">
+        <div class="row" style="gap:12px">
+          <div class="field" style="flex:1;min-width:230px;margin:0">
+            <label for="ref-search" class="hidden-vis">Search locators</label>
+            <input type="search" id="ref-search" name="refSearch" data-testid="ref-search"
+                   data-automation-id="ref-search" placeholder="Search id, name, testid, label…">
+          </div>
+          <div class="field" style="width:200px;margin:0">
+            <label for="ref-page" class="hidden-vis">Filter by page</label>
+            <select id="ref-page" name="refPage" data-testid="ref-page" data-automation-id="ref-page">
+              <option value="all">All pages</option>
+              <option value="form-essentials.html">Form Essentials</option>
+              <option value="dates-ranges.html">Dates &amp; Ranges</option>
+              <option value="files-buttons.html">Files &amp; Buttons</option>
+              <option value="wizard-submit.html">Wizard &amp; Submit</option>
+              <option value="behaviors.html">Interactions &amp; Waits</option>
+            </select>
+          </div>
+          <div class="field" style="width:170px;margin:0">
+            <label for="ref-tag" class="hidden-vis">Filter by tag</label>
+            <select id="ref-tag" name="refTag" data-testid="ref-tag" data-automation-id="ref-tag">
+              <option value="all">All tags</option>
+              <option value="input">input</option>
+              <option value="select">select</option>
+              <option value="textarea">textarea</option>
+              <option value="button">button</option>
+              <option value="a">a (link)</option>
+              <option value="div">div / span</option>
+            </select>
+          </div>
+          <button type="button" class="btn" id="ref-reset" data-testid="ref-reset" data-automation-id="ref-reset">Reset</button>
+          <button type="button" class="btn btn-primary" id="ref-copy-all" data-testid="ref-copy-all" data-automation-id="ref-copy-all">Copy as JSON</button>
+        </div>
+        <p class="hint" style="margin-top:12px" id="ref-count" role="status">Loading…</p>
+      </div>
+
+      <div class="card" id="ref-all" style="padding:0;overflow:hidden">
+        <div class="table-wrap" style="border:0;border-radius:0">
+          <table class="data" id="ref-table" data-testid="ref-table" data-automation-id="ref-table">
+            <thead>
+              <tr>
+                <th scope="col">Page</th>
+                <th scope="col">Element</th>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">data-testid</th>
+                <th scope="col">Selenium</th>
+                <th scope="col">Playwright</th>
+              </tr>
+            </thead>
+            <tbody id="ref-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:26px">
+        <h3>Locator contract</h3>
+        <p class="muted small">Every interactive element on this site carries four stable hooks plus a real label:</p>
+        <pre class="code" style="margin-top:12px">&lt;input
+  type="text"
+  id="first-name"                 <span class="c">// Selenium: By.id("first-name")</span>
+  name="firstName"                <span class="c">// Selenium: By.name("firstName")</span>
+  data-testid="first-name"        <span class="c">// Playwright: page.getByTestId("first-name")</span>
+  data-automation-id="first-name" <span class="c">// generic / other tools</span>
+&gt;
+&lt;label for="first-name"&gt;First name&lt;/label&gt;  <span class="c">// getByLabel / XPath by label</span></pre>
+        <div class="grid grid-2" style="margin-top:18px">
+          <div>
+            <h4>Framework cheat sheet</h4>
+<pre class="code" style="margin-top:10px"><span class="c"># Selenium Python</span>
+from selenium.webdriver.common.by import By
+driver.find_element(By.ID, "first-name")
+driver.find_element(By.NAME, "firstName")
+driver.find_element(By.CSS_SELECTOR, "[data-testid='first-name']")
+driver.find_element(By.XPATH, "//label[text()='First name']/following::input[1]")</pre>
+          </div>
+          <div>
+            <h4>&nbsp;</h4>
+<pre class="code" style="margin-top:10px"><span class="c">// Playwright JS</span>
+await page.getByTestId("first-name");
+await page.getByLabel("First name");
+await page.locator("#first-name");
+await page.locator('input[name="firstName"]');</pre>
+          </div>
+        </div>
+      </div>
+
+      <p class="center faint small" style="margin-top:34px">
+        Regenerate this page's data with <code class="inline-code">node scripts/build-locator-data.js</code>
+      </p>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  const data = window.LOCATOR_DATA || { rows: [], pages: [] };
+  const body = document.getElementById("ref-body");
+  const countEl = document.getElementById("ref-count");
+  const search = document.getElementById("ref-search");
+  const pageSel = document.getElementById("ref-page");
+  const tagSel = document.getElementById("ref-tag");
+
+  document.getElementById("stat-total").textContent = String(data.total || 0);
+  document.getElementById("stat-pages").textContent = String((data.pages || []).length);
+
+  const esc = (s) =>
+    String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+  const shortPage = (p) => p.replace(".html", "");
+
+  let filtered = data.rows.slice();
+
+  function render() {
+    const q = (search.value || "").trim().toLowerCase();
+    const pg = pageSel.value;
+    const tg = tagSel.value;
+
+    filtered = data.rows.filter((r) => {
+      if (pg !== "all" && r.page !== pg) return false;
+      if (tg !== "all") {
+        const ok = tg === "div" ? (r.tag === "div" || r.tag === "span") : r.tag === tg;
+        if (!ok) return false;
+      }
+      if (!q) return true;
+      return (
+        r.id.toLowerCase().includes(q) ||
+        r.name.toLowerCase().includes(q) ||
+        r.testid.toLowerCase().includes(q) ||
+        r.label.toLowerCase().includes(q) ||
+        r.tag.includes(q)
+      );
+    });
+
+    countEl.textContent =
+      filtered.length + " of " + data.total + " targets" +
+      (q || pg !== "all" || tg !== "all" ? " (filtered)" : "");
+
+    if (!filtered.length) {
+      body.innerHTML =
+        '<tr><td colspan="7"><div class="empty-state"><span class="big">&#128269;</span><br>No locators match that filter.</div></td></tr>';
+      return;
+    }
+
+    body.innerHTML = filtered
+      .slice(0, 400)
+      .map((r) => {
+        const cell = (v, cls) =>
+          '<td' + (cls ? ' class="' + cls + '"' : "") + '><button type="button" class="copy-btn" data-copy-value="' +
+          esc(v) + '">' + (v ? esc(v) : "—") + "</button></td>";
+        return (
+          '<tr data-testid="ref-row-' + esc(r.testid) + '" data-automation-id="ref-row-' + esc(r.testid) + '">' +
+            '<td><a href="' + esc(r.page) + '#ref-all" class="xsmall">' + esc(shortPage(r.page)) + "</a></td>" +
+            "<td>" + esc(r.label || r.tag) +
+              '<div class="xsmall faint mono">&lt;' + esc(r.tag) + (r.type ? " type=" + esc(r.type) : "") + "&gt;</div></td>" +
+            cell(r.id, "mono xsmall") +
+            cell(r.name, "mono xsmall") +
+            cell(r.testid, "mono xsmall") +
+            cell(r.selenium, "mono xsmall") +
+            cell(r.playwright, "mono xsmall") +
+          "</tr>"
+        );
+      })
+      .join("");
+
+    if (filtered.length > 400) {
+      body.insertAdjacentHTML(
+        "beforeend",
+        '<tr><td colspan="7"><div class="empty-state">Showing the first 400 matches — narrow your search to see the rest.</div></td></tr>'
+      );
+    }
+  }
+
+  ["input", "change"].forEach((ev) => {
+    search.addEventListener(ev, window.lab.debounce(render, 160));
+  });
+  pageSel.addEventListener("change", render);
+  tagSel.addEventListener("change", render);
+
+  document.getElementById("ref-reset").addEventListener("click", () => {
+    search.value = "";
+    pageSel.value = "all";
+    tagSel.value = "all";
+    render();
+  });
+
+  document.getElementById("ref-copy-all").addEventListener("click", function () {
+    window.labCopy(JSON.stringify(filtered, null, 2), this);
+  });
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-copy-value]");
+    if (b) window.labCopy(b.getAttribute("data-copy-value"), b);
+  });
+
+  document.querySelectorAll(".nav [data-filter]").forEach((a) => {
+    a.addEventListener("click", () => {
+      pageSel.value = a.getAttribute("data-filter");
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

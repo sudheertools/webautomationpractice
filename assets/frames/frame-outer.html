@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outer frame</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; background: #f0f2f9; color: #14172a; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  iframe { width: 100%; height: 210px; border: 1px solid #cfd4e6; border-radius: 8px; background: #fff; }
+  #outer-msg { margin-top: 10px; font-size: 13px; color: #4f46e5; font-weight: 600; min-height: 18px; }
+</style>
+</head>
+<body>
+  <h2 id="outer-title">Outer frame (contains one more frame inside)</h2>
+  <p style="font-size:13px;color:#565e80;margin:0 0 10px">
+    To reach the form below you need <b>two</b> frame switches.
+  </p>
+  <iframe id="nested-frame" data-testid="nested-frame" data-automation-id="nested-frame"
+          src="frame-inner.html" title="Inner frame"></iframe>
+  <p id="outer-msg" role="status"></p>
+  <script>
+    document.getElementById("nested-frame").addEventListener("load", function () {
+      document.getElementById("outer-msg").textContent = "Inner frame loaded.";
+    });
+  </script>
+</body>
+</html>

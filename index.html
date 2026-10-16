@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LocatorLab — Practice site for Selenium &amp; Playwright automation</title>
+<meta name="description" content="A free practice website for automation learners. Every HTML form control, plus a Locator Coach that shows you the exact Selenium and Playwright locators for each element.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+<style>
+  .home-wrap { max-width: 880px; margin: 0 auto; }
+  .home-hero { text-align: center; padding: 46px 0 12px; }
+  .home-hero h1 {
+    font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1.12; margin: 0 0 16px;
+  }
+  .home-hero h1 .grad {
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .home-hero p { color: var(--text-muted); font-size: var(--fs-lg); max-width: 620px; margin: 0 auto; line-height: 1.6; }
+  .start-btn {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
+    padding: 15px 30px; border-radius: var(--r-full); font-size: 1.05rem; font-weight: 700;
+    background: var(--grad); color: #fff; text-decoration: none; border: none; cursor: pointer;
+    box-shadow: 0 10px 30px -8px #6366f1cc; transition: transform .16s var(--ease), box-shadow .16s var(--ease);
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px #6366f1e6; }
+  .start-btn .arw { transition: transform .16s var(--ease); }
+  .start-btn:hover .arw { transform: translateX(4px); }
+  .home-stats {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 26px;
+  }
+  .home-stats .pillx {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 15px;
+    border: 1px solid var(--border); border-radius: var(--r-full);
+    font-size: var(--fs-sm); color: var(--text-muted); background: var(--surface);
+  }
+  .home-stats .pillx b { color: var(--text); font-family: var(--mono); }
+  .how {
+    margin-top: 54px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;
+  }
+  .how .step {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 18px; text-align: left;
+  }
+  .how .step .n {
+    display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+    border-radius: var(--r-full); background: var(--brand-soft); color: var(--brand);
+    font-family: var(--mono); font-weight: 700; font-size: var(--fs-sm); margin-bottom: 10px;
+  }
+  .how .step h3 { font-size: var(--fs-md); font-weight: 700; margin: 0 0 5px; }
+  .how .step p { font-size: var(--fs-sm); color: var(--text-muted); margin: 0; line-height: 1.55; }
+  .go-deeper {
+    margin-top: 40px; text-align: center; padding-top: 26px; border-top: 1px solid var(--border);
+  }
+  .go-deeper p { color: var(--text-muted); font-size: var(--fs-sm); margin: 0 0 14px; }
+  .deeper-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .deeper-links a {
+    padding: 8px 15px; border: 1px solid var(--border); border-radius: var(--r-full);
+    color: var(--text-muted); text-decoration: none; font-size: var(--fs-sm); font-weight: 600;
+    transition: all .16s var(--ease);
+  }
+  .deeper-links a:hover { color: var(--text); border-color: var(--brand); background: var(--brand-soft); }
+  .visitor {
+    margin-top: 40px; text-align: center; padding: 24px 20px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  }
+  .visitor h3 { font-size: var(--fs-md); font-weight: 700; margin: 0 0 4px; }
+  .visitor .sub { color: var(--text-muted); font-size: var(--fs-sm); margin: 0 0 18px; }
+  .visitor .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .visitor .badges img { height: 22px; }
+  .foot { text-align: center; color: var(--text-faint); font-size: var(--fs-xs); margin-top: 40px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="pages/quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+        <a href="pages/locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="pages/form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="pages/dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="pages/files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="pages/wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="pages/behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">
+      Credentials: <code>admin / admin</code><br>
+      Free &amp; open source
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">LocatorLab<small>Practice site for Selenium &amp; Playwright learners</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+      <div class="home-wrap">
+
+        <section class="home-hero">
+          <h1>Practise automation.<br><span class="grad">Get the locators for free.</span></h1>
+          <p>Every HTML form control, interaction and wait pattern you need to master Selenium
+          and Playwright — on one clean page. Turn on the Locator Coach and copy any locator.</p>
+
+          <a class="start-btn" href="pages/quick-practice.html">
+            Start practising <span class="arw">&#8594;</span>
+          </a>
+
+          <div class="home-stats">
+            <span class="pillx"><b>315</b> stable targets</span>
+            <span class="pillx"><b>4</b> attrs per element</span>
+            <span class="pillx"><b>2</b> frameworks coached</span>
+            <span class="pillx"><b>0</b> backend required</span>
+          </div>
+        </section>
+
+        <section class="how" aria-label="How it works">
+          <div class="step">
+            <div class="n">1</div>
+            <h3>Open Quick Practice</h3>
+            <p>One page, 38 essential targets. Nothing to configure.</p>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <h3>Turn on Locator Coach</h3>
+            <p>Hover any control, click the badge, copy the Selenium or Playwright locator.</p>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <h3>Write your test</h3>
+            <p>Practise filling, asserting and waiting — then compare with the provided snippet.</p>
+          </div>
+        </section>
+
+        <section class="go-deeper">
+          <p>Want to go deeper? Dedicated pages for every category:</p>
+          <div class="deeper-links">
+            <a href="pages/form-essentials.html">Form essentials</a>
+            <a href="pages/dates-ranges.html">Dates &amp; ranges</a>
+            <a href="pages/files-buttons.html">Files &amp; buttons</a>
+            <a href="pages/wizard-submit.html">Wizard &amp; submit</a>
+            <a href="pages/behaviors.html">Interactions &amp; waits</a>
+            <a href="pages/locator-reference.html">Locator reference</a>
+          </div>
+        </section>
+
+        <section class="visitor" aria-label="Site visitors">
+          <h3>&#128065; Visitor stats</h3>
+          <p class="sub">Live traffic from GitHub &mdash; updated as people visit.</p>
+          <div class="badges">
+            <img src="https://img.shields.io/github/traffic/views/sudheertools/webautomationpractice?style=for-the-badge&amp;label=views&amp;color=6366f1" alt="GitHub views">
+            <img src="https://img.shields.io/github/traffic/views/sudheertools/webautomationpractice?style=for-the-badge&amp;label=unique%20visitors&amp;color=8b5cf6&amp;query=.unique" alt="GitHub unique visitors">
+            <img src="https://img.shields.io/github/traffic/clones/sudheertools/webautomationpractice?style=for-the-badge&amp;color=22d3ee" alt="GitHub clones">
+          </div>
+        </section>
+
+        <p class="foot">LocatorLab — free practice site for Selenium, Playwright, Cypress &amp; WebDriverIO learners.</p>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/locator-coach.js"></script>
+</body>
+</html>

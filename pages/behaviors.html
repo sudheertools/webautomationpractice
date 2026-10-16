@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactions &amp; Waits — LocatorLab</title>
+<meta name="description" content="Practice tabs, accordions, modals, JS alerts, toasts, tooltips, sortable tables, drag and drop, dynamic content, iframes, shadow DOM, new windows and cookie banners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">This page</div>
+        <a href="#tabs"><span class="nav-ico">&#8226;</span>Tabs &amp; accordion</a>
+        <a href="#modals"><span class="nav-ico">&#8226;</span>Modals &amp; alerts</a>
+        <a href="#toasts"><span class="nav-ico">&#8226;</span>Toasts &amp; tooltip</a>
+        <a href="#table"><span class="nav-ico">&#8226;</span>Data table</a>
+        <a href="#drag"><span class="nav-ico">&#8226;</span>Drag &amp; drop</a>
+        <a href="#dynamic"><span class="nav-ico">&#8226;</span>Dynamic content</a>
+        <a href="#scroll"><span class="nav-ico">&#8226;</span>Infinite scroll</a>
+        <a href="#frames"><span class="nav-ico">&#8226;</span>iFrames</a>
+        <a href="#shadow"><span class="nav-ico">&#8226;</span>Shadow DOM</a>
+        <a href="#windows"><span class="nav-ico">&#8226;</span>Windows &amp; auth</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Interactions &amp; Waits<small>Everything that moves, appears or disappears</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Page 5 of 5</span>
+        <h1>Interactions &amp; Waits</h1>
+        <p>Everything that is not a form: overlays, dynamic content, tables, drag and drop, frames,
+        shadow DOM and new windows. This is where explicit waits stop being optional.</p>
+      </div>
+
+      <!-- ============ TABS ============ -->
+      <h2 class="section-title" id="tabs"><span class="section-num">01</span>Tabs &amp; accordion</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Tab set</h3>
+            <p>Proper ARIA tabs: <code class="inline-code">role="tab"</code>,
+            <code class="inline-code">aria-selected</code>, <code class="inline-code">aria-controls</code>,
+            roving focus and a deliberately disabled tab.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Product info" id="tab-list">
+          <button type="button" class="tab" role="tab" id="tab-overview" data-tab="overview"
+                  data-testid="tab-overview" data-automation-id="tab-overview" aria-selected="true" aria-controls="panel-overview">Overview</button>
+          <button type="button" class="tab" role="tab" id="tab-features" data-tab="features"
+                  data-testid="tab-features" data-automation-id="tab-features" aria-selected="false" aria-controls="panel-features">Features</button>
+          <button type="button" class="tab" role="tab" id="tab-pricing" data-tab="pricing"
+                  data-testid="tab-pricing" data-automation-id="tab-pricing" aria-selected="false" aria-controls="panel-pricing">Pricing</button>
+          <button type="button" class="tab" role="tab" id="tab-disabled" data-tab="disabled"
+                  data-testid="tab-disabled" data-automation-id="tab-disabled" aria-selected="false" disabled>Disabled</button>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" data-panel="overview">
+          <p><b>LocatorLab</b> is a practice site with 110+ interactive elements. Every control carries a
+          stable <code class="inline-code">id</code>, <code class="inline-code">name</code>,
+          <code class="inline-code">data-testid</code> and <code class="inline-code">data-automation-id</code>.</p>
+          <p style="margin-top:10px">Assert the active tab via <code class="inline-code">aria-selected="true"</code> or
+          the <code class="inline-code">.active</code> class — both are kept in sync.</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-features" aria-labelledby="tab-features" data-panel="features" hidden>
+          <ul style="padding-left:20px;line-height:1.9">
+            <li>Locator Coach overlay with Selenium &amp; Playwright snippets</li>
+            <li>Every native date/time input type plus custom pickers</li>
+            <li>Sortable, searchable, paginated data table</li>
+            <li>iFrames, nested frames and Shadow DOM</li>
+          </ul>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-pricing" aria-labelledby="tab-pricing" data-panel="pricing" hidden>
+          <p><b>Free.</b> Always. No signup, no backend, no ads.</p>
+          <p style="margin-top:10px">Self-host it: it is a static folder with zero dependencies.</p>
+        </div>
+
+        <div style="margin-top:26px">
+          <h4 style="margin-bottom:12px">Accordion</h4>
+          <div class="accordion" id="faq">
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" id="acc-1" data-testid="acc-1" data-automation-id="acc-1"
+                      aria-expanded="true" aria-controls="acc-panel-1">
+                <span>What is an explicit wait?</span><span class="chev" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="acc-panel" id="acc-panel-1" role="region" aria-labelledby="acc-1">
+                A polling wait that blocks until a condition is true — an element visible, a URL
+                matching, a text present — or a timeout expires. Use it whenever the app is doing
+                work in the background.
+              </div>
+            </div>
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" id="acc-2" data-testid="acc-2" data-automation-id="acc-2"
+                      aria-expanded="false" aria-controls="acc-panel-2">
+                <span>Why not just use sleep()?</span><span class="chev" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="acc-panel" id="acc-panel-2" role="region" aria-labelledby="acc-2" hidden>
+                Because it is either too short (flaky) or too slow (your suite crawls). A fixed sleep
+                waits the same amount whether the element is ready or never coming.
+              </div>
+            </div>
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" id="acc-3" data-testid="acc-3" data-automation-id="acc-3"
+                      aria-expanded="false" aria-controls="acc-panel-3">
+                <span>How do I handle Shadow DOM?</span><span class="chev" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="acc-panel" id="acc-panel-3" role="region" aria-labelledby="acc-3" hidden>
+                CSS selectors pierce shadow boundaries in Playwright and Selenium 4's
+                <code class="inline-code">css: >>> </code> piercing combinator. XPath does not cross
+                the boundary — you must pierce step by step.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#tab-features</code> and assert <code>#panel-features</code> is visible while <code>#panel-overview</code> is hidden.</li>
+            <li>Assert <code>#tab-disabled</code> cannot be clicked (it has the <code class="inline-code">disabled</code> attribute).</li>
+            <li>Expand <code>#acc-2</code> and assert <code>#acc-panel-2</code> becomes visible and <code>#acc-1</code> collapses.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("tab-features").click();
+await expect(page.locator("#panel-features")).toBeVisible();
+await expect(page.locator("#panel-overview")).toBeHidden();
+await expect(page.getByTestId("tab-disabled")).toBeDisabled();
+
+await page.getByTestId("acc-2").click();
+await expect(page.locator("#acc-panel-2")).toBeVisible();
+await expect(page.getByTestId("acc-1")).toHaveAttribute("aria-expanded", "false");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ MODALS ============ -->
+      <h2 class="section-title" id="modals"><span class="section-num">02</span>Modals &amp; native alerts</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Overlay dialogs</h3>
+            <p>A custom modal (focus-trapped, backdrop, ESC to close) and the three native browser
+            dialogs: <code class="inline-code">alert</code>, <code class="inline-code">confirm</code> and
+            <code class="inline-code">prompt</code>.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="row" style="gap:10px;margin-bottom:20px">
+          <button type="button" class="btn btn-primary" id="open-modal" data-testid="open-modal" data-automation-id="open-modal">Open modal</button>
+          <button type="button" class="btn" id="open-modal-confirm" data-testid="open-modal-confirm" data-automation-id="open-modal-confirm">Confirm-style modal</button>
+          <button type="button" class="btn" id="js-alert" data-testid="js-alert" data-automation-id="js-alert">window.alert()</button>
+          <button type="button" class="btn" id="js-confirm" data-testid="js-confirm" data-automation-id="js-confirm">window.confirm()</button>
+          <button type="button" class="btn" id="js-prompt" data-testid="js-prompt" data-automation-id="js-prompt">window.prompt()</button>
+        </div>
+
+        <p class="hint" role="status" id="dialog-out">Dialog results appear here…</p>
+
+        <div class="modal-backdrop" id="modal-backdrop">
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="demo-modal">
+            <div class="modal-head">
+              <h4 id="modal-title">Invite a teammate</h4>
+              <button type="button" class="icon-btn" id="modal-x" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="field">
+                <label for="modal-email">Teammate email</label>
+                <input type="email" id="modal-email" name="inviteEmail" data-testid="modal-email"
+                       data-automation-id="modal-email" placeholder="teammate@company.com">
+              </div>
+              <div class="field" style="margin-top:14px">
+                <label for="modal-role">Role</label>
+                <select id="modal-role" name="inviteRole" data-testid="modal-role" data-automation-id="modal-role">
+                  <option value="viewer">Viewer</option>
+                  <option value="editor">Editor</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-foot">
+              <button type="button" class="btn" id="modal-cancel" data-testid="modal-cancel" data-automation-id="modal-cancel">Cancel</button>
+              <button type="button" class="btn btn-primary" id="modal-send" data-testid="modal-send" data-automation-id="modal-send">Send invite</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <span aria-hidden="true">&#8505;</span>
+          <div><strong>Native dialogs block the page</strong>
+          <p>Playwright auto-dismisses them unless you register a handler:
+          <code class="inline-code">page.on("dialog", d =&gt; d.accept("input"))</code>.
+          Selenium needs <code class="inline-code">driver.switch_to.alert</code>.</p></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Open the modal, fill <code>#modal-email</code>, click Send, and assert the toast confirms the invite.</li>
+            <li>Open it again and close with the <kbd class="key">Esc</kbd> key — assert <code>#modal-backdrop</code> is hidden.</li>
+            <li>Accept the <code>confirm()</code> dialog and assert <code>#dialog-out</code> says "confirmed".</li>
+            <li>Dismiss the <code>prompt()</code> dialog and assert the output says "dismissed".</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("open-modal").click();
+await page.getByTestId("modal-email").fill("peer@company.com");
+await page.getByTestId("modal-send").click();
+await expect(page.locator("#modal-backdrop")).toBeHidden();
+
+page.once("dialog", (d) =&gt; d.accept());
+await page.getByTestId("js-confirm").click();
+await expect(page.locator("#dialog-out")).toContainText("confirmed");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ TOASTS ============ -->
+      <h2 class="section-title" id="toasts"><span class="section-num">03</span>Toasts &amp; tooltip</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Transient notifications</h3>
+            <p>Toasts appear bottom-right, auto-dismiss after 5 seconds and have a close button.
+            The host has <code class="inline-code">role="status"</code> so screen readers announce them.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="row" style="gap:10px;margin-bottom:20px">
+          <button type="button" class="btn btn-primary" id="toast-success" data-testid="toast-success" data-automation-id="toast-success">Success toast</button>
+          <button type="button" class="btn btn-danger" id="toast-error" data-testid="toast-error" data-automation-id="toast-error">Error toast</button>
+          <button type="button" class="btn" id="toast-warning" data-testid="toast-warning" data-automation-id="toast-warning">Warning toast</button>
+          <button type="button" class="btn" id="toast-info" data-testid="toast-info" data-automation-id="toast-info">Info toast</button>
+        </div>
+
+        <div class="row" style="gap:16px">
+          <div class="tooltip-host">
+            <button type="button" class="btn" id="tooltip-btn" data-testid="tooltip-btn" data-automation-id="tooltip-btn">Hover me for a tooltip</button>
+            <span class="tooltip" id="demo-tooltip" role="tooltip" data-testid="demo-tooltip" data-automation-id="demo-tooltip">Keyboard accessible — try tabbing</span>
+          </div>
+          <span class="hint">The tooltip is a sibling of the button inside <code class="inline-code">.tooltip-host</code>.</span>
+        </div>
+
+        <div style="margin-top:22px">
+          <h4 style="margin-bottom:12px">Inline alerts (non-transient)</h4>
+          <div class="stack">
+            <div class="alert alert-success" data-testid="alert-success" data-automation-id="alert-success"><span aria-hidden="true">&#10003;</span><div><strong>Success</strong><p>Your changes were saved.</p></div></div>
+            <div class="alert alert-error" data-testid="alert-error" data-automation-id="alert-error"><span aria-hidden="true">&#10007;</span><div><strong>Error</strong><p>Payment could not be processed.</p></div></div>
+            <div class="alert alert-warning" data-testid="alert-warning" data-automation-id="alert-warning"><span aria-hidden="true">&#9888;</span><div><strong>Warning</strong><p>Your trial ends in 3 days.</p></div></div>
+            <div class="alert alert-info" data-testid="alert-info" data-automation-id="alert-info"><span aria-hidden="true">&#8505;</span><div><strong>Info</strong><p>Scheduled maintenance on Sunday.</p></div></div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click Success toast, assert a <code>.toast.success</code> appears in <code>#toast-host</code>.</li>
+            <li>Assert it disappears on its own within 7 seconds (auto-dismiss is 5s).</li>
+            <li>Hover <code>#tooltip-btn</code> and assert <code>#demo-tooltip</code> becomes visible.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver.find_element(By.ID, "toast-success").click()
+WebDriverWait(driver, 5).until(
+    EC.visibility_of_element_located((By.CSS_SELECTOR, ".toast.success"))
+)
+WebDriverWait(driver, 8).until(
+    EC.invisibility_of_element_located((By.CSS_SELECTOR, ".toast.success"))
+)</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ TABLE ============ -->
+      <h2 class="section-title" id="table"><span class="section-num">04</span>Data table</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Sortable, searchable, paginated</h3>
+            <p>20 rows of deterministic data. Sort by clicking a header, filter with the search box,
+            change the page size. The footer reports the current range.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="row" style="margin-bottom:14px">
+          <div class="field" style="max-width:260px;margin:0">
+            <label for="table-search" class="hidden-vis">Search users</label>
+            <input type="search" id="table-search" name="tableSearch" data-testid="table-search"
+                   data-automation-id="table-search" placeholder="Search name, email or role…">
+          </div>
+          <div class="field" style="width:150px;margin:0">
+            <label for="table-size" class="hidden-vis">Rows per page</label>
+            <select id="table-size" name="tableSize" data-testid="table-size" data-automation-id="table-size">
+              <option value="5">5 per page</option>
+              <option value="10" selected>10 per page</option>
+              <option value="20">20 per page</option>
+            </select>
+          </div>
+          <div class="field" style="width:170px;margin:0">
+            <label for="table-role" class="hidden-vis">Filter by role</label>
+            <select id="table-role" name="tableRole" data-testid="table-role" data-automation-id="table-role">
+              <option value="">All roles</option>
+              <option value="Admin">Admin</option>
+              <option value="Editor">Editor</option>
+              <option value="Viewer">Viewer</option>
+            </select>
+          </div>
+          <button type="button" class="btn" id="table-reset" data-testid="table-reset" data-automation-id="table-reset">Reset</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data" id="user-table" data-testid="user-table" data-automation-id="user-table">
+            <thead>
+              <tr>
+                <th scope="col" class="sortable" data-sort="id" data-testid="th-id" data-automation-id="th-id" aria-sort="ascending">ID <span class="arrow">&#8593;</span></th>
+                <th scope="col" class="sortable" data-sort="name" data-testid="th-name" data-automation-id="th-name">Name <span class="arrow">&#8597;</span></th>
+                <th scope="col" class="sortable" data-sort="email" data-testid="th-email" data-automation-id="th-email">Email <span class="arrow">&#8597;</span></th>
+                <th scope="col">Role</th>
+                <th scope="col" class="sortable" data-sort="status" data-testid="th-status" data-automation-id="th-status">Status <span class="arrow">&#8597;</span></th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+          <div class="table-foot">
+            <span id="table-info" role="status">Showing 0 entries</span>
+            <div class="pager" id="table-pager"></div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Search <code>jane</code> and assert the table body has exactly 1 row.</li>
+            <li>Sort by clicking <code>#th-name</code> and assert the first row's name is alphabetically first.</li>
+            <li>Set page size to 5 and assert 5 rows render, then go to page 2 and assert the ID sequence continues.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await page.getByTestId("table-search").fill("jane");
+await expect(page.locator("#table-body tr")).toHaveCount(1);
+
+await page.getByTestId("table-search").fill("");
+await page.getByTestId("th-name").click();
+const first = await page.locator("#table-body tr td").first().innerText();
+// first cell is ID; read the Name cell (2nd) instead
+const name = await page.locator("#table-body tr").first().locator("td").nth(1).innerText();
+expect(name.toLowerCase()).toBe("aisha khan");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ DRAG & DROP ============ -->
+      <h2 class="section-title" id="drag"><span class="section-num">05</span>Drag &amp; drop</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Reorderable list</h3>
+            <p>Native HTML5 drag events. Items have stable <code class="inline-code">data-testid</code>
+            values that <b>do not change</b> when they move — so your locators survive the reorder.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <span class="field-label" style="display:block;margin-bottom:9px">Backlog — drag items to Done</span>
+            <div class="drag-list" id="todo-zone" data-testid="todo-zone" data-automation-id="todo-zone">
+              <div class="drag-item" draggable="true" id="task-1" data-testid="task-1" data-automation-id="task-1">
+                <span class="grip" aria-hidden="true">⋮⋮</span><span class="id">#1</span><span>Write login test</span>
+              </div>
+              <div class="drag-item" draggable="true" id="task-2" data-testid="task-2" data-automation-id="task-2">
+                <span class="grip" aria-hidden="true">⋮⋮</span><span class="id">#2</span><span>Set up CI pipeline</span>
+              </div>
+              <div class="drag-item" draggable="true" id="task-3" data-testid="task-3" data-automation-id="task-3">
+                <span class="grip" aria-hidden="true">⋮⋮</span><span class="id">#3</span><span>Review PR #42</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="field-label" style="display:block;margin-bottom:9px">Done</span>
+            <div class="drop-target" id="done-zone" data-testid="done-zone" data-automation-id="done-zone">
+              Drop tasks here
+            </div>
+            <div class="row" style="margin-top:12px">
+              <span class="hint" id="drag-status" role="status">0 tasks completed</span>
+              <button type="button" class="btn btn-sm" id="drag-reset" data-testid="drag-reset" data-automation-id="drag-reset">Reset</button>
+              <button type="button" class="btn btn-sm" id="drag-move-all" data-testid="drag-move-all" data-automation-id="drag-move-all">Move all (keyboard fallback)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-warning" style="margin-top:18px">
+          <span aria-hidden="true">&#9888;</span>
+          <div><strong>HTML5 drag-and-drop is hard to automate</strong>
+          <p><code class="inline-code">page.dragAndDrop()</code> works in Playwright. Selenium needs
+          click-and-hold with an Actions chain, and even that can fail. That is why this page also
+          ships a keyboard/button fallback — real apps should too.</p></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#drag-move-all</code> and assert all 3 tasks now live inside <code>#done-zone</code>.</li>
+            <li>Assert <code>#drag-status</code> reads <code>3 tasks completed</code>.</li>
+            <li>Reset, then drag <code>#task-2</code> into <code>#done-zone</code> with <code>dragAndDrop()</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("drag-move-all").click();
+await expect(page.locator("#done-zone .drag-item")).toHaveCount(3);
+await expect(page.locator("#drag-status")).toHaveText("3 tasks completed");
+
+await page.getByTestId("drag-reset").click();
+await page.dragAndDrop("#task-2", "#done-zone");
+await expect(page.locator("#done-zone [data-testid='task-2']")).toBeVisible();</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ DYNAMIC ============ -->
+      <h2 class="section-title" id="dynamic"><span class="section-num">06</span>Dynamic content &amp; waits</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Things that appear, disappear and take their time</h3>
+            <p>The entire reason explicit waits exist. Every widget here changes the DOM after a delay
+            or on demand.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-2">
+          <fieldset>
+            <legend>Delayed load</legend>
+            <div class="row" style="margin-top:12px;gap:8px">
+              <label for="delay-select" class="hidden-vis">Delay</label>
+              <select id="delay-select" name="delay" data-testid="delay-select" data-automation-id="delay-select">
+                <option value="1">1 second</option>
+                <option value="2" selected>2 seconds</option>
+                <option value="3">3 seconds</option>
+                <option value="5">5 seconds</option>
+              </select>
+              <button type="button" class="btn btn-primary" id="delay-load" data-testid="delay-load" data-automation-id="delay-load">Load content</button>
+            </div>
+            <div id="delay-out" style="margin-top:14px" data-testid="delay-out" data-automation-id="delay-out">
+              <div class="empty-state" id="delay-empty"><span class="big">&#8987;</span><br>Nothing loaded yet.</div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Visibility toggles</legend>
+            <div class="row" style="margin-top:12px;gap:8px">
+              <button type="button" class="btn" id="tg-show" data-testid="tg-show" data-automation-id="tg-show">Show element</button>
+              <button type="button" class="btn" id="tg-hide" data-testid="tg-hide" data-automation-id="tg-hide">Hide element</button>
+              <button type="button" class="btn" id="tg-remove" data-testid="tg-remove" data-automation-id="tg-remove">Remove from DOM</button>
+              <button type="button" class="btn" id="tg-readd" data-testid="tg-readd" data-automation-id="tg-readd">Re-add element</button>
+            </div>
+            <div class="alert alert-info" id="tg-target" data-testid="tg-target" data-automation-id="tg-target" style="margin-top:14px">
+              <div><strong>I am the target</strong><p>Toggle me with the buttons above.</p></div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:20px">
+          <fieldset>
+            <legend>Flaky element</legend>
+            <p class="small muted" style="margin:10px 0 12px">Appears and disappears every 2 seconds. Wait for it to be <b>visible</b> before clicking.</p>
+            <button type="button" class="btn btn-primary" id="flaky-btn" data-testid="flaky-btn" data-automation-id="flaky-btn">Now you see me</button>
+            <p class="hint" style="margin-top:10px" role="status" id="flaky-status">Visible</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Changing text</legend>
+            <p class="small muted" style="margin:10px 0 12px">Text cycles through states. Wait for the exact string <code class="inline-code">Ready</code> before clicking.</p>
+            <p id="cycle-text" data-testid="cycle-text" data-automation-id="cycle-text" style="font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--brand)" role="status">Loading…</p>
+            <button type="button" class="btn" id="cycle-btn" data-testid="cycle-btn" data-automation-id="cycle-btn" disabled>Continue</button>
+          </fieldset>
+        </div>
+
+        <div style="margin-top:20px">
+          <span class="field-label" style="display:block;margin-bottom:9px">Progress + spinner</span>
+          <div class="row">
+            <button type="button" class="btn btn-primary" id="prog-start" data-testid="prog-start" data-automation-id="prog-start">Simulate download</button>
+            <span class="hint" id="prog-label" role="status">0%</span>
+          </div>
+          <div class="progress" style="margin-top:10px"><div class="progress-bar" id="prog-bar" data-testid="prog-bar" data-automation-id="prog-bar"></div></div>
+          <div id="prog-spinner" hidden style="margin-top:16px" aria-label="Loading" role="status"><div class="spinner spinner-lg"></div></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click Load with a 3-second delay and wait for <code>#delay-out</code> to lose its empty state.</li>
+            <li>Remove <code>#tg-target</code>, assert it is detached (not merely hidden), then re-add it.</li>
+            <li>Wait until <code>#flaky-btn</code> is visible, click it, and assert <code>#flaky-status</code> says "Clicked!".</li>
+            <li>Wait for <code>#cycle-text</code> to equal <code>Ready</code>, then click <code>#cycle-btn</code>.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await page.getByTestId("delay-select").selectOption("3");
+await page.getByTestId("delay-load").click();
+await expect(page.locator("#delay-empty")).toBeHidden({ timeout: 6000 });
+
+await page.getByTestId("tg-remove").click();
+await expect(page.getByTestId("tg-target")).toBeHidden();
+await page.getByTestId("tg-readd").click();
+await expect(page.getByTestId("tg-target")).toBeVisible();
+
+await expect(page.getByTestId("flaky-btn")).toBeVisible({ timeout: 5000 });
+await page.getByTestId("flaky-btn").click();
+await expect(page.locator("#flaky-status")).toHaveText("Clicked!");
+
+await expect(page.locator("#cycle-text")).toHaveText("Ready", { timeout: 10000 });
+await page.getByTestId("cycle-btn").click();</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ INFINITE SCROLL ============ -->
+      <h2 class="section-title" id="scroll"><span class="section-num">07</span>Infinite scroll</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Load more on scroll</h3>
+            <p>Scroll to the bottom of the list and 10 more items are appended. Each item has a
+            stable <code class="inline-code">id="inf-item-N"</code> that never changes once rendered.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="infinite-list" id="inf-list" data-testid="inf-list" data-automation-id="inf-list"></div>
+        <div id="inf-sentinel" style="height:1px"></div>
+        <p class="hint" style="margin-top:12px" role="status" id="inf-status">Loaded 10 items</p>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Scroll <code>#inf-list</code> to the bottom repeatedly until there are 40 items.</li>
+            <li>Assert the item with <code>id="inf-item-25"</code> exists at some point.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">const list = page.getByTestId("inf-list");
+for (let i = 0; i &lt; 5; i++) {
+  await list.evaluate((el) =&gt; { el.scrollTop = el.scrollHeight; });
+  await page.waitForTimeout(300);
+}
+await expect(page.locator("#inf-list .inf-item")).toHaveCount(40);
+await expect(page.locator("#inf-item-25")).toBeAttached();</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ FRAMES ============ -->
+      <h2 class="section-title" id="frames"><span class="section-num">08</span>iFrames</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Single &amp; nested frames</h3>
+            <p>Both frames load local documents — no network needed. Nested requires two frame
+            switches, which is where most beginners get stuck.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <span class="field-label" style="display:block;margin-bottom:9px">Single frame — <code class="inline-code">#single-frame</code></span>
+            <div class="frame-box">
+              <iframe id="single-frame" data-testid="single-frame" data-automation-id="single-frame"
+                      src="../assets/frames/frame-inner.html" title="Single frame"></iframe>
+              <div class="frame-cap">src="../assets/frames/frame-inner.html"</div>
+            </div>
+          </div>
+          <div>
+            <span class="field-label" style="display:block;margin-bottom:9px">Nested frame — <code class="inline-code">#nested-host</code></span>
+            <div class="frame-box">
+              <iframe id="nested-host" data-testid="nested-host" data-automation-id="nested-host"
+                      src="../assets/frames/frame-outer.html" title="Outer frame"></iframe>
+              <div class="frame-cap">src="../assets/frames/frame-outer.html" → contains #nested-frame → #frame-input</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-info" style="margin-top:18px">
+          <span aria-hidden="true">&#8505;</span>
+          <div><strong>Switching frames</strong>
+          <p>Selenium: <code class="inline-code">driver.switch_to.frame("single-frame")</code> then
+          <code class="inline-code">switch_to.default_content()</code>. Playwright pierces automatically
+          for CSS/XPath in most cases — but you still need <code class="inline-code">frameLocator()</code>
+          when the frame is cross-origin or nested.</p></div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Switch into <code>#single-frame</code>, type <code>Hello</code> into <code>#frame-input</code>, click <code>#frame-echo</code>, and assert the message.</li>
+            <li>Switch back to the default content and assert <code>#frame-title</code> is <b>not</b> found there.</li>
+            <li>For the nested frame, switch twice and assert <code>#frame-input</code> is reachable.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">driver.switch_to.frame("single-frame")
+inp = driver.find_element(By.ID, "frame-input")
+inp.send_keys("Hello")
+driver.find_element(By.ID, "frame-echo").click()
+assert "Hello" in driver.find_element(By.ID, "frame-msg").text
+driver.switch_to.default_content()
+
+# nested: outer then inner
+driver.switch_to.frame("nested-host")
+driver.switch_to.frame("nested-frame")
+assert driver.find_element(By.ID, "frame-input").is_displayed()
+driver.switch_to.default_content()</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ SHADOW DOM ============ -->
+      <h2 class="section-title" id="shadow"><span class="section-num">09</span>Shadow DOM</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Encapsulated content</h3>
+            <p>Elements inside <code class="inline-code">attachShadow()</code> are invisible to normal
+            XPath. Playwright's CSS engine and Selenium 4's <code class="inline-code">css:</code>
+            piercing syntax can reach them; XPath cannot.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="shadow-box">
+            <h4 style="margin-bottom:10px">Open shadow root</h4>
+            <p class="small muted" style="margin-bottom:12px">Host: <code class="inline-code">#shadow-host</code></p>
+            <div id="shadow-host" class="shadow-host" data-testid="shadow-host" data-automation-id="shadow-host"></div>
+          </div>
+          <div class="shadow-box">
+            <h4 style="margin-bottom:10px">Nested shadow roots</h4>
+            <p class="small muted" style="margin-bottom:12px">Host: <code class="inline-code">#shadow-host-2</code> — two levels deep.</p>
+            <div id="shadow-host-2" class="shadow-host" data-testid="shadow-host-2" data-automation-id="shadow-host-2"></div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Locate <code>#shadow-input</code> inside the open shadow root and type <code>secret</code>.</li>
+            <li>Click <code>#shadow-submit</code> and assert <code>#shadow-msg</code> shows the typed value.</li>
+            <li>Reach the input inside the <b>nested</b> shadow root (<code>#shadow-input-2</code>).</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">// Playwright pierces open shadow roots automatically
+await page.getByTestId("shadow-host").locator("#shadow-input").fill("secret");
+await page.getByTestId("shadow-host").locator("#shadow-submit").click();
+await expect(page.getByTestId("shadow-host").locator("#shadow-msg"))
+  .toContainText("secret");
+
+// nested
+await page.getByTestId("shadow-host-2")
+  .locator("#shadow-input-2").fill("deep");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ WINDOWS ============ -->
+      <h2 class="section-title" id="windows"><span class="section-num">10</span>Windows, auth &amp; cookies</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Popup, new tab, basic auth &amp; cookie banner</h3>
+            <p>The remaining cross-context cases: a real popup window, a new tab, a simulated
+            credential gate, and a dismissible cookie banner that sits above everything.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="row" style="gap:10px;margin-bottom:22px">
+          <button type="button" class="btn btn-primary" id="open-popup" data-testid="open-popup" data-automation-id="open-popup">Open popup window</button>
+          <button type="button" class="btn" id="open-tab" data-testid="open-tab" data-automation-id="open-tab">Open new tab</button>
+          <button type="button" class="btn" id="open-cookie" data-testid="open-cookie" data-automation-id="open-cookie">Show cookie banner</button>
+          <button type="button" class="btn" id="open-auth" data-testid="open-auth" data-automation-id="open-auth">Basic auth gate</button>
+        </div>
+
+        <p class="hint" role="status" id="window-out">No window opened yet.</p>
+
+        <div id="auth-panel" hidden style="margin-top:20px">
+          <fieldset style="max-width:420px">
+            <legend>Simulated HTTP Basic Auth</legend>
+            <div class="stack" style="margin-top:10px">
+              <div class="field">
+                <label for="auth-user">Username</label>
+                <input type="text" id="auth-user" name="authUser" data-testid="auth-user" data-automation-id="auth-user" autocomplete="username">
+              </div>
+              <div class="field">
+                <label for="auth-pass">Password</label>
+                <input type="password" id="auth-pass" name="authPass" data-testid="auth-pass" data-automation-id="auth-pass" autocomplete="current-password">
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-primary" id="auth-submit" data-testid="auth-submit" data-automation-id="auth-submit">Authenticate</button>
+                <span class="hint" id="auth-out" role="status">Credentials: admin / admin</span>
+              </div>
+            </div>
+            <div class="alert alert-success" id="auth-ok" hidden style="margin-top:14px">
+              <span aria-hidden="true">&#128274;</span>
+              <div><strong>Authorized</strong><p id="auth-secret">Secret: the answer is 42.</p></div>
+            </div>
+            <div class="alert alert-error" id="auth-fail" hidden style="margin-top:14px">
+              <span aria-hidden="true">&#10007;</span>
+              <div><strong>401 Unauthorized</strong><p>Wrong username or password.</p></div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Open the popup, switch to the new window handle, and assert its title.</li>
+            <li>Switch back to the main window and assert you can see <code>#open-popup</code> again.</li>
+            <li>Authenticate with <code>admin / admin</code> and assert <code>#auth-ok</code> is visible.</li>
+            <li>Authenticate with a wrong password and assert <code>#auth-fail</code> instead.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">main = driver.current_window_handle
+driver.find_element(By.ID, "open-popup").click()
+
+WebDriverWait(driver, 5).until(lambda d: len(d.window_handles) == 2)
+popup = [h for h in driver.window_handles if h != main][0]
+driver.switch_to.window(popup)
+assert "LocatorLab" in driver.title
+driver.close()
+driver.switch_to.window(main)
+
+driver.find_element(By.ID, "auth-user").send_keys("admin")
+driver.find_element(By.ID, "auth-pass").send_keys("admin")
+driver.find_element(By.ID, "auth-submit").click()
+WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.ID, "auth-ok")))</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:30px">
+        <span aria-hidden="true">&#127881;</span>
+        <div>
+          <strong>You made it through all five pages</strong>
+          <p>Head back to the <a href="../index.html">home page</a>, open the
+          <a href="locator-reference.html">locator reference</a>, or restart at
+          <a href="form-essentials.html">Form Essentials</a>.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-coach.js"></script>
+<script src="../assets/js/sections/behaviors.js"></script>
+</body>
+</html>

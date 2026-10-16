@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dates &amp; Ranges — LocatorLab</title>
+<meta name="description" content="Practice native date and time inputs, a custom calendar picker, date ranges, sliders, dual-thumb ranges, star ratings and color pickers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/lab.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">LL</span>
+      <span>LocatorLab<small class="brand-sub">Automation Practice</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-group">
+        <div class="nav-title">Start here</div>
+        <a href="../index.html"><span class="nav-ico">&#9750;</span>Home</a>
+        <a href="locator-reference.html"><span class="nav-ico">&#128269;</span>Locator reference</a>
+        <a href="quick-practice.html"><span class="nav-ico">&#9889;</span>Quick practice<span class="nav-count">38</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Form practice</div>
+        <a href="form-essentials.html"><span class="nav-ico">&#9998;</span>Form essentials<span class="nav-count">44</span></a>
+        <a href="dates-ranges.html"><span class="nav-ico">&#128197;</span>Dates &amp; ranges<span class="nav-count">16</span></a>
+        <a href="files-buttons.html"><span class="nav-ico">&#128193;</span>Files &amp; buttons<span class="nav-count">14</span></a>
+        <a href="wizard-submit.html"><span class="nav-ico">&#10148;</span>Wizard &amp; submit<span class="nav-count">12</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">Behaviors</div>
+        <a href="behaviors.html"><span class="nav-ico">&#9881;</span>Interactions &amp; waits<span class="nav-count">24</span></a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-title">This page</div>
+        <a href="#native-dates"><span class="nav-ico">&#8226;</span>Native date inputs</a>
+        <a href="#calendar"><span class="nav-ico">&#8226;</span>Custom calendar</a>
+        <a href="#date-range"><span class="nav-ico">&#8226;</span>Date range</a>
+        <a href="#sliders"><span class="nav-ico">&#8226;</span>Sliders</a>
+        <a href="#ratings"><span class="nav-ico">&#8226;</span>Ratings</a>
+        <a href="#color"><span class="nav-ico">&#8226;</span>Color picker</a>
+      </div>
+    </nav>
+    <div class="sidebar-foot">Credentials: <code>admin / admin</code></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+      <div class="topbar-title">Dates &amp; Ranges<small>Pickers, sliders and ratings</small></div>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-sm" data-coach-toggle aria-pressed="false">
+        <span aria-hidden="true">&#129518;</span><span data-coach-label>Locator Coach</span>
+      </button>
+      <button class="btn btn-sm" data-theme-toggle aria-pressed="false" aria-label="Toggle color theme">
+        <span data-theme-icon aria-hidden="true">&#9789;</span><span data-theme-label>Dark</span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <span class="eyebrow">Page 2 of 5</span>
+        <h1>Dates &amp; Ranges</h1>
+        <p>Every native date and time input type, a hand-built calendar widget, a date-range picker
+        with duration maths, range sliders and rating controls. The custom calendar is deliberately
+        <b>not</b> a native input — it is the pattern most real apps use.</p>
+      </div>
+
+      <!-- ============ 01 NATIVE DATES ============ -->
+      <h2 class="section-title" id="native-dates"><span class="section-num">01</span>Native date &amp; time inputs</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>All five HTML date/time types</h3>
+            <p>Each stores an ISO-ish string in its <code class="inline-code">value</code>. Automation
+            usually sets the value directly rather than clicking the picker.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="dob-input">Date of birth</label>
+            <input type="date" id="dob-input" name="dob" data-testid="dob-input" data-automation-id="dob-input" value="1990-12-10">
+            <span class="hint">Type: <code class="inline-code">date</code> &rarr; <code class="inline-code">YYYY-MM-DD</code></span>
+          </div>
+          <div class="field">
+            <label for="alarm-input">Alarm time</label>
+            <input type="time" id="alarm-input" name="alarm" data-testid="alarm-input" data-automation-id="alarm-input" value="07:30" step="90">
+            <span class="hint">Type: <code class="inline-code">time</code> &rarr; <code class="inline-code">HH:MM</code></span>
+          </div>
+          <div class="field">
+            <label for="meeting-input">Meeting start</label>
+            <input type="datetime-local" id="meeting-input" name="meeting" data-testid="meeting-input" data-automation-id="meeting-input" value="2026-03-15T14:00">
+            <span class="hint">Type: <code class="inline-code">datetime-local</code> &rarr; <code class="inline-code">YYYY-MM-DDTHH:MM</code></span>
+          </div>
+          <div class="field">
+            <label for="billing-month">Billing month</label>
+            <input type="month" id="billing-month" name="billingMonth" data-testid="billing-month" data-automation-id="billing-month" value="2026-01">
+            <span class="hint">Type: <code class="inline-code">month</code> &rarr; <code class="inline-code">YYYY-MM</code></span>
+          </div>
+          <div class="field">
+            <label for="holiday-week">Holiday week</label>
+            <input type="week" id="holiday-week" name="holidayWeek" data-testid="holiday-week" data-automation-id="holiday-week" value="2026-W12">
+            <span class="hint">Type: <code class="inline-code">week</code> &rarr; <code class="inline-code">YYYY-Www</code></span>
+          </div>
+          <div class="field">
+            <label for="past-date">Past date only (max = today)</label>
+            <input type="date" id="past-date" name="pastDate" data-testid="past-date" data-automation-id="past-date" max="2026-01-01">
+            <span class="hint">Has <code class="inline-code">max</code> — future dates are rejected.</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Clear <code>#dob-input</code>, type <code>2001-05-20</code> and assert its value.</li>
+            <li>Set <code>#alarm-input</code> to <code>06:15</code> using <code>fill()</code> / <code>sendKeys()</code>.</li>
+            <li>Assert <code>#past-date</code> rejects tomorrow's date (value stays empty or unchanged).</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("dob-input").fill("2001-05-20");
+await expect(page.getByTestId("dob-input")).toHaveValue("2001-05-20");
+
+await page.getByTestId("alarm-input").fill("06:15");
+await expect(page.getByTestId("alarm-input")).toHaveValue("06:15");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 02 CALENDAR ============ -->
+      <h2 class="section-title" id="calendar"><span class="section-num">02</span>Custom calendar picker</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Hand-built date picker</h3>
+            <p>A real widget: month navigation, day cells with <code class="inline-code">data-day</code>,
+            a "today" outline and a "selected" state. Nothing here is a native input.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <label for="trip-date-input" style="display:block;margin-bottom:7px">Trip date</label>
+            <div class="input-wrap has-trail" style="margin-bottom:12px">
+              <input type="text" id="trip-date-input" name="tripDate" data-testid="trip-date-input"
+                     data-automation-id="trip-date-input" placeholder="Pick a date…" readonly>
+              <span class="trail"><button type="button" class="icon-btn" id="cal-toggle" aria-label="Open calendar" aria-expanded="false">&#128197;</button></span>
+            </div>
+            <div class="calendar" id="trip-calendar" data-testid="trip-calendar" data-automation-id="trip-calendar" role="dialog" aria-label="Trip date calendar">
+              <div class="cal-head">
+                <button type="button" class="cal-nav" id="cal-prev" aria-label="Previous month">&#8249;</button>
+                <b id="cal-label">Month</b>
+                <button type="button" class="cal-nav" id="cal-next" aria-label="Next month">&#8250;</button>
+              </div>
+              <div class="cal-grid" id="cal-dow"></div>
+              <div class="cal-grid" id="cal-days"></div>
+              <div class="cal-foot">
+                <button type="button" class="btn btn-sm" id="cal-today" data-testid="cal-today" data-automation-id="cal-today">Today</button>
+                <button type="button" class="btn btn-sm" id="cal-clear" data-testid="cal-clear" data-automation-id="cal-clear">Clear</button>
+              </div>
+            </div>
+            <p class="hint" style="margin-top:10px" role="status" id="cal-out">No date selected.</p>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom:12px">What to notice</h4>
+            <div class="stack small muted">
+              <p>1. Each day is a <code class="inline-code">&lt;button class="cal-day" data-day="2026-03-15"&gt;</code> — the ISO date lives in the attribute, not the text.</p>
+              <p>2. The selected day carries <code class="inline-code">.selected</code>; today also has <code class="inline-code">.today</code>.</p>
+              <p>3. The input is <code class="inline-code">readonly</code> — you cannot type into it; you must drive the widget.</p>
+              <p>4. <code class="inline-code">#cal-prev</code> / <code class="inline-code">#cal-next</code> re-render the grid, so old day locators become stale. Classic "stale element" practice.</p>
+            </div>
+            <div class="alert alert-warning" style="margin-top:16px">
+              <span aria-hidden="true">&#9888;</span>
+              <div><strong>Stale element trap</strong><p>Never keep a reference to a day button across a month change — re-locate after every navigation.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click <code>#cal-next</code> twice, then select the <code>15th</code> of the displayed month.</li>
+            <li>Assert <code>#trip-date-input</code> equals <code>YYYY-MM-15</code> for that month.</li>
+            <li>Click <code>#cal-clear</code> and assert the input is empty and no <code>.selected</code> day exists.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Python)</summary>
+<pre class="code">driver.find_element(By.ID, "cal-next").click()
+driver.find_element(By.ID, "cal-next").click()
+month = driver.find_element(By.ID, "cal-label").text  # e.g. "March 2026"
+
+day = driver.find_element(By.CSS_SELECTOR, '#cal-days [data-day$="-15"]')
+day.click()
+
+val = driver.find_element(By.ID, "trip-date-input").get_attribute("value")
+assert val.endswith("-15")
+
+driver.find_element(By.ID, "cal-clear").click()
+assert driver.find_elements(By.CSS_SELECTOR, "#cal-days .selected") == []</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 03 DATE RANGE ============ -->
+      <h2 class="section-title" id="date-range"><span class="section-num">03</span>Date range picker</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Start &amp; end date with duration</h3>
+            <p>Two inputs plus a calendar. Choosing a start then an end highlights the whole range
+            and the app computes the number of nights.</p>
+          </div>
+          <span class="badge badge-adv">Advanced</span>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="range-start">Check-in</label>
+            <input type="date" id="range-start" name="rangeStart" data-testid="range-start" data-automation-id="range-start" value="2026-04-10">
+          </div>
+          <div class="field">
+            <label for="range-end">Check-out</label>
+            <input type="date" id="range-end" name="rangeEnd" data-testid="range-end" data-automation-id="range-end" value="2026-04-14">
+          </div>
+          <div class="field">
+            <span class="field-label">Result</span>
+            <div class="alert alert-info" style="margin-top:7px;padding:10px 13px" role="status" id="range-out">
+              <div><strong id="range-nights">4 nights</strong><p id="range-dates">2026-04-10 → 2026-04-14</p></div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="range-calc" data-testid="range-calc" data-automation-id="range-calc" style="margin-top:14px">Calculate stay</button>
+        <button type="button" class="btn" id="range-swap" data-testid="range-swap" data-automation-id="range-swap" style="margin-top:14px">Swap dates</button>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Set check-in <code>2026-05-01</code> and check-out <code>2026-05-04</code>, click Calculate.</li>
+            <li>Assert <code>#range-nights</code> reads <code>3 nights</code>.</li>
+            <li>Set check-out before check-in, click Calculate, and assert an error alert appears.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright TS)</summary>
+<pre class="code">await page.getByTestId("range-start").fill("2026-05-01");
+await page.getByTestId("range-end").fill("2026-05-04");
+await page.getByTestId("range-calc").click();
+await expect(page.locator("#range-nights")).toHaveText("3 nights");
+
+await page.getByTestId("range-end").fill("2026-04-28");
+await page.getByTestId("range-calc").click();
+await expect(page.locator("#range-out")).toHaveClass(/error/);</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 04 SLIDERS ============ -->
+      <h2 class="section-title" id="sliders"><span class="section-num">04</span>Sliders</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Range inputs &amp; dual-thumb</h3>
+            <p>Native <code class="inline-code">&lt;input type="range"&gt;</code> plus a custom dual-thumb
+            filter built from two overlapping range inputs.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="volume-slider">Volume</label>
+            <input type="range" id="volume-slider" name="volume" data-testid="volume-slider"
+                   data-automation-id="volume-slider" min="0" max="100" value="55" step="1">
+            <div class="row" style="justify-content:space-between">
+              <span class="hint">0</span>
+              <output class="rating-out" id="volume-out" for="volume-slider">55</output>
+              <span class="hint">100</span>
+            </div>
+            <span class="hint">Read the value with <code class="inline-code">get_attribute("value")</code> or <code class="inline-code">inputValue()</code>.</span>
+          </div>
+
+          <div class="field">
+            <label for="rating-slider">Experience (years)</label>
+            <input type="range" id="rating-slider" name="years" data-testid="rating-slider"
+                   data-automation-id="rating-slider" min="0" max="20" value="3" step="1">
+            <output class="rating-out" id="years-out" for="rating-slider">3 years</output>
+            <span class="hint">Changing this slider updates the text node <code class="inline-code">#years-out</code>.</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:20px">
+          <span class="field-label" style="display:block;margin-bottom:7px">Price filter (dual-thumb range)</span>
+          <div class="dual-range" id="price-range">
+            <div class="track"></div>
+            <div class="fill" id="price-fill"></div>
+            <input type="range" id="price-min" name="priceMin" data-testid="price-min"
+                   data-automation-id="price-min" min="0" max="1000" value="250" step="10" aria-label="Minimum price">
+            <input type="range" id="price-max" name="priceMax" data-testid="price-max"
+                   data-automation-id="price-max" min="0" max="1000" value="750" step="10" aria-label="Maximum price">
+          </div>
+          <output class="rating-out" id="price-out" style="display:block;margin-top:6px">$250 — $750</output>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Set <code>#volume-slider</code> to <code>80</code> and assert <code>#volume-out</code> reads <code>80</code>.</li>
+            <li>Move <code>#price-min</code> to <code>400</code> and assert <code>#price-out</code> starts with <code>$400</code>.</li>
+            <li>Try to drag <code>#price-min</code> above <code>#price-max</code> — the app prevents it. Assert the min never exceeds the max.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("volume-slider").fill("80");   // fill() works on range inputs
+await expect(page.locator("#volume-out")).toHaveText("80");
+
+await page.getByTestId("price-min").fill("400");
+await expect(page.locator("#price-out")).toContainText("$400");</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 05 RATINGS ============ -->
+      <h2 class="section-title" id="ratings"><span class="section-num">05</span>Ratings</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Star rating &amp; Likert matrix</h3>
+            <p>The star rating is five visually-hidden radio buttons with real labels —
+            you click the <code class="inline-code">&lt;label&gt;</code>, not the input.</p>
+          </div>
+          <span class="badge badge-int">Intermediate</span>
+        </div>
+
+        <div class="grid grid-2">
+          <fieldset>
+            <legend>How was the tutorial?</legend>
+            <div class="stars" id="star-rating" role="radiogroup" aria-label="Star rating" style="margin-top:10px">
+              <input type="radio" id="star-5" name="stars" value="5" data-testid="star-5" data-automation-id="star-5">
+              <label for="star-5" title="5 stars" aria-label="5 stars">&#9733;</label>
+              <input type="radio" id="star-4" name="stars" value="4" data-testid="star-4" data-automation-id="star-4">
+              <label for="star-4" title="4 stars" aria-label="4 stars">&#9733;</label>
+              <input type="radio" id="star-3" name="stars" value="3" data-testid="star-3" data-automation-id="star-3" checked>
+              <label for="star-3" title="3 stars" aria-label="3 stars">&#9733;</label>
+              <input type="radio" id="star-2" name="stars" value="2" data-testid="star-2" data-automation-id="star-2">
+              <label for="star-2" title="2 stars" aria-label="2 stars">&#9733;</label>
+              <input type="radio" id="star-1" name="stars" value="1" data-testid="star-1" data-automation-id="star-1">
+              <label for="star-1" title="1 star" aria-label="1 star">&#9733;</label>
+            </div>
+            <p class="hint" style="margin-top:10px" role="status" id="star-out">Rating: 3 of 5</p>
+            <p class="hint">Order is <code class="inline-code">rtl</code> — star 5 is the <b>first</b> DOM node.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Locator difficulty</legend>
+            <table class="matrix" id="likert-matrix">
+              <thead>
+                <tr><th scope="col">Concept</th><th scope="col">Easy</th><th scope="col">Medium</th><th scope="col">Hard</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">CSS selectors</th>
+                  <td><input type="radio" name="lk-css" value="easy" checked data-testid="lk-css-easy" data-automation-id="lk-css-easy" aria-label="CSS selectors easy"></td>
+                  <td><input type="radio" name="lk-css" value="medium" data-testid="lk-css-medium" data-automation-id="lk-css-medium" aria-label="CSS selectors medium"></td>
+                  <td><input type="radio" name="lk-css" value="hard" data-testid="lk-css-hard" data-automation-id="lk-css-hard" aria-label="CSS selectors hard"></td>
+                </tr>
+                <tr>
+                  <th scope="row">XPath axes</th>
+                  <td><input type="radio" name="lk-xpath" value="easy" data-testid="lk-xpath-easy" data-automation-id="lk-xpath-easy" aria-label="XPath axes easy"></td>
+                  <td><input type="radio" name="lk-xpath" value="medium" checked data-testid="lk-xpath-medium" data-automation-id="lk-xpath-medium" aria-label="XPath axes medium"></td>
+                  <td><input type="radio" name="lk-xpath" value="hard" data-testid="lk-xpath-hard" data-automation-id="lk-xpath-hard" aria-label="XPath axes hard"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Shadow DOM</th>
+                  <td><input type="radio" name="lk-shadow" value="easy" data-testid="lk-shadow-easy" data-automation-id="lk-shadow-easy" aria-label="Shadow DOM easy"></td>
+                  <td><input type="radio" name="lk-shadow" value="medium" data-testid="lk-shadow-medium" data-automation-id="lk-shadow-medium" aria-label="Shadow DOM medium"></td>
+                  <td><input type="radio" name="lk-shadow" value="hard" checked data-testid="lk-shadow-hard" data-automation-id="lk-shadow-hard" aria-label="Shadow DOM hard"></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="hint" style="margin-top:10px">Radios share <code class="inline-code">name</code> per row — locate them as <code class="inline-code">input[name="lk-css"][value="easy"]</code>.</p>
+          </fieldset>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Click the 5-star <code>&lt;label&gt;</code> and assert <code>#star-5</code> is checked.</li>
+            <li>Assert <code>#star-out</code> now reads <code>Rating: 5 of 5</code>.</li>
+            <li>Read every checked radio in <code>#likert-matrix</code> and assert exactly 3 are checked.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Selenium Java)</summary>
+<pre class="code">driver.findElement(By.cssSelector("label[for=\"star-5\"]")).click();
+Assert.assertTrue(driver.findElement(By.id("star-5")).isSelected());
+Assert.assertEquals(driver.findElement(By.id("star-out")).getText(), "Rating: 5 of 5");
+
+List&lt;WebElement&gt; checked = driver.findElements(
+    By.cssSelector("#likert-matrix input[type=\"radio\"]:checked"));
+Assert.assertEquals(checked.size(), 3);</pre>
+          </details>
+        </div>
+      </div>
+
+      <!-- ============ 06 COLOR ============ -->
+      <h2 class="section-title" id="color"><span class="section-num">06</span>Color picker</h2>
+
+      <div class="card" data-reveal>
+        <div class="card-head">
+          <div class="grow">
+            <h3>Native color input</h3>
+            <p><code class="inline-code">&lt;input type="color"&gt;</code> always stores a lowercase
+            7-character hex string. The swatch preview is driven by the same value.</p>
+          </div>
+          <span class="badge badge-req">Beginner</span>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="brand-color">Brand colour</label>
+            <input type="color" id="brand-color" name="brandColor" data-testid="brand-color"
+                   data-automation-id="brand-color" value="#6366f1">
+          </div>
+          <div class="field">
+            <label for="color-hex">Hex value (read-only mirror)</label>
+            <input type="text" id="color-hex" name="brandHex" data-testid="color-hex"
+                   data-automation-id="color-hex" value="#6366f1" readonly>
+          </div>
+          <div class="field">
+            <span class="field-label">Preview</span>
+            <div id="color-swatch" data-testid="color-swatch" data-automation-id="color-swatch"
+                 style="margin-top:7px;height:44px;border-radius:8px;border:1px solid var(--border);background:#6366f1"></div>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-head">&#127919; Practice task</div>
+          <ol>
+            <li>Set <code>#brand-color</code> to <code>#22d3ee</code> and assert <code>#color-hex</code> mirrors it.</li>
+            <li>Assert the swatch's computed <code>background-color</code> is a non-transparent rgb value.</li>
+          </ol>
+          <details>
+            <summary>Show answer (Playwright JS)</summary>
+<pre class="code">await page.getByTestId("brand-color").fill("#22d3ee");
+await expect(page.getByTestId("color-hex")).toHaveValue("#22d3ee");
+
+const bg = await page.getByTestId("color-swatch")
+  .evaluate((el) => getComputedStyle(el).backgroundColor);
+expect(bg).not.toBe("rgba(0, 0, 0, 0)");</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:30px">
+        <span aria-hidden="true">&#10003;</span>
+        <div>
+          <strong>Dates &amp; Ranges complete</strong>
+          <p>Next: <a href="files-buttons.html">Files &amp; Buttons</a> for uploads, downloads and every button variant.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/locator-coach.js"></script>
+<script src="../assets/js/sections/dates-ranges.js"></script>
+</body>
+</html>
